@@ -38,6 +38,30 @@ export const flashcards = [
     definition: "The cornerstone of African society, representing extended kinship and cultural continuity across generations.",
     audioUrl: "/audio/familia.mp3",
     culturalNote: "In African culture, family extends beyond blood relations"
+  },
+  {
+    id: 6,
+    word: "Ndugu",
+    translation: "Brother/Sister",
+    definition: "Used to address someone as brother or sister, showing closeness and respect.",
+    audioUrl: "/audio/ndugu.mp3",
+    culturalNote: "Reflects the Ubuntu philosophy - the belief that we are all connected as one human family."
+  },
+  {
+    id: 7,
+    word: "Umoja",
+    translation: "Unity",
+    definition: "The concept of togetherness and working as one.",
+    audioUrl: "/audio/umoja.mp3",
+    culturalNote: "One of the seven principles of Kwanzaa, emphasizing the importance of family and community unity."
+  },
+  {
+    id: 8,
+    word: "Harambee",
+    translation: "Let's pull together",
+    definition: "A call for community cooperation and mutual assistance.",
+    audioUrl: "/audio/harambee.mp3",
+    culturalNote: "Kenya's national motto, representing the spirit of working together for the common good."
   }
 ];
 
@@ -53,6 +77,7 @@ export const dictionaryWords = [
   { word: "Ndugu", translation: "Sibling" },
   { word: "Nyumbani", translation: "Home" }
 ];
+/*
 export const flashcards = [
   {
     id: 1,
@@ -111,3 +136,4 @@ export const flashcards = [
     culturalNote: "Kenya's national motto, representing the spirit of working together for the common good."
   }
 ];
+*/
