@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FeatureCard from '../components/common/FeatureCard';
 
-const HomeScreen = () => {
+const HomeScreen = ({ user, onLogout }) => {
   const navigate = useNavigate();
 
   const features = [
@@ -34,6 +34,16 @@ const HomeScreen = () => {
   ];
 
   return (
+    <div className="home-screen">
+      {/* Header with logout button */}
+      <header className="home-header">
+        <h1>Welcome, {user?.email}</h1>
+        <button onClick={onLogout} className="logout-btn">
+          Logout
+        </button>
+      </header>
+
+   
     <div className="screen-content">
       <div className="header">
         <div className="logo">L.E.A.</div>
@@ -48,6 +58,8 @@ const HomeScreen = () => {
             "Karibu! Ready to strengthen your cultural bonds through Swahili?"
           </div>
         </div>
+
+    </div>
 
         {features.map((feature, index) => (
           <FeatureCard key={index} {...feature} />

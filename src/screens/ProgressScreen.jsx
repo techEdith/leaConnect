@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useProgress } from '../hooks/useProgress';
 import { Trophy, Target, Calendar, BookOpen } from 'lucide-react';
 
-const ProgressScreen = () => {
+const ProgressScreen = ({ user, onLogout })  => {
   const navigate = useNavigate();
   const { progress, loading } = useProgress();
 
@@ -32,6 +32,17 @@ const ProgressScreen = () => {
   const levelPercentage = (currentLevelProgress / experienceToNextLevel) * 100;
 
   return (
+    <div className="progress-screen">
+      <div className="user-section">
+        <div className="user-info">
+          <h2>Your Progress</h2>
+          <p>Logged in as: {user?.email}</p>
+        </div>
+        <button onClick={onLogout} className="logout-button">
+          Sign Out
+        </button>
+      </div>
+      
     <div className="screen-content">
       <div className="screen-header">
         <button 
@@ -137,6 +148,7 @@ const ProgressScreen = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

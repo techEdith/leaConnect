@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { auth } from './services/firebase';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import HomeScreen from './screens/HomeScreen';
 import FlashcardScreen from './screens/FlashcardScreen';
 import DictionaryScreen from './screens/DictionaryScreen';
@@ -24,8 +23,26 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+  // Logout function
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+      console.log('User logged out successfully');
+    } catch (error) {
+      console.error('Error signing out:', error);
+    }
+  };
+
   if (loading) {
-    return <div className="loading-screen">Loading Lea Connect...</div>;
+    return (
+      <div className="loading-screen">
+        <div className="loading-content">
+          <div className="loading-spinner"></div>
+          <p>Loading Lea Connect...</p>
+        </div>
+      </div>
+    );
   }
 
   if (!user) {
@@ -39,10 +56,10 @@ function App() {
           <div className="floating-particles" id="particles"></div>
 
           <Routes>
-            <Route path="/" element={<HomeScreen />} />
-            <Route path="/flashcards" element={<FlashcardScreen />} />
-            <Route path="/dictionary" element={<DictionaryScreen />} />
-            <Route path="/progress" element={<ProgressScreen />} />
+            <Route path="/" element={<HomeScreen user={user} onLogout={handleLogout} />} />
+            <Route path="/flashcards" element={<FlashcardScreen user={user} onLogout={handleLogout} />} />
+            <Route path="/dictionary" element={<DictionaryScreen user={user} onLogout={handleLogout} />} />
+            <Route path="/progress" element={<ProgressScreen user={user} onLogout={handleLogout} />} />
           </Routes>
 
           <BottomNavigation />
