@@ -37,12 +37,6 @@ function App() {
       <div className="phone-container">
         <div className="screen">
           <div className="floating-particles" id="particles"></div>
-          <div className="streak-indicator">🔥 7 Day Streak</div>
-
-          <div className="status-bar">
-            <span>9:41</span>
-            <span>●●●●● 5G</span>
-          </div>
 
           <Routes>
             <Route path="/" element={<HomeScreen />} />
