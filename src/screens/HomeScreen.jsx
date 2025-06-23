@@ -36,8 +36,8 @@ const HomeScreen = () => {
   return (
     <div className="screen-content">
       <div className="header">
-        <div className="logo">Lea</div>
-        <div className="app-title">Lea Connect</div>
+        <div className="logo">L.E.A.</div>
+        <div className="app-title">Learn & Connect</div>
         <div className="app-subtitle">Language • Education • Ancestry</div>
         <div className="tagline">Where Language Builds Connections</div>
       </div>
