@@ -1,3 +1,291 @@
+/* Bottom Navigation Styles */
+.bottom-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+
+.nav-item:hover {
+  background: #f0f0f0;
+}
+
+.nav-item.active {
+  color: #667eea;
+  background: #f0f0ff;
+}
+
+.nav-label {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* Feature Card Styles */
+.feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.feature-icon {
+  font-size: 24px;
+  color: #667eea;
+  min-width: 40px;
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.feature-description {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Flashcard Component Styles */
+.flashcard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.flashcard {
+  width: 100%;
+  max-width: 350px;
+  height: 400px;
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.flashcard-front,
+.flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.6s;
+  backface-visibility: hidden;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+  justify-content: flex-start;
+  padding-top: 40px;
+}
+
+.flashcard.flipped .flashcard-front {
+  transform: rotateY(-180deg);
+}
+
+.flashcard.flipped .flashcard-back {
+  transform: rotateY(0deg);
+}
+
+.word-main {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.word-translation {
+  font-size: 20px;
+  color: #667eea;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.audio-button {
+  background: #667eea;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.audio-button:hover {
+  background: #5a67d8;
+}
+
+.flip-hint {
+  font-size: 14px;
+  color: #999;
+  margin-top: auto;
+}
+
+.word-definition,
+.cultural-note {
+  text-align: left;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.word-definition strong,
+.cultural-note strong {
+  color: #333;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.word-definition p,
+.cultural-note p {
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.cultural-note {
+  background: #f8f9ff;
+  border-left: 3px solid #667eea;
+  padding: 15px;
+  border-radius: 0 8px 8px 0;
+}
+
+.card-actions {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.previous-button,
+.next-button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.previous-button {
+  background: #f0f0f0;
+  color: #666;
+}
+
+.previous-button:hover {
+  background: #e0e0e0;
+}
+
+.next-button {
+  background: #667eea;
+  color: white;
+}
+
+.next-button:hover {
+  background: #5a67d8;
+}
+
+/* Flashcard Progress Bar */
+.flashcard-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+/* Study Stats */
+.study-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 20px;
+  background: #f8f9ff;
+  border-radius: 12px;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Adjust screen content to account for bottom navigation */
+.screen-content {
+  padding-bottom: 80px;
+}
+
 /* Add to existing styles */
 @media (max-width: 480px) {
   .phone-container {

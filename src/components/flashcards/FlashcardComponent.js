@@ -1,27 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Howl } from 'howler';
+
+import React, { useState } from 'react';
+import { Volume2 } from 'lucide-react';
 
 const FlashcardComponent = ({ card, onNext, onPrevious }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [audio, setAudio] = useState(null);
 
-  useEffect(() => {
-    if (card.audioUrl) {
-      const sound = new Howl({
-        src: [card.audioUrl],
-        volume: 0.7
-      });
-      setAudio(sound);
-    }
-  }, [card.audioUrl]);
+  const handleFlip = () => {
+    setIsFlipped(!isFlipped);
+  };
 
   const playAudio = () => {
-    if (audio) {
-      audio.play();
-    } else {
-      // Fallback for demo
+    // Simple text-to-speech for pronunciation
+    if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(card.word);
-      utterance.lang = 'sw-KE';
+      utterance.lang = 'sw'; // Swahili language code
+      utterance.rate = 0.8;
       speechSynthesis.speak(utterance);
     }
   };
@@ -30,7 +23,7 @@ const FlashcardComponent = ({ card, onNext, onPrevious }) => {
     <div className="flashcard-container">
       <div 
         className={`flashcard ${isFlipped ? 'flipped' : ''}`}
-        onClick={() => setIsFlipped(!isFlipped)}
+        onClick={handleFlip}
       >
         <div className="flashcard-front">
           <div className="word-main">{card.word}</div>
@@ -42,17 +35,25 @@ const FlashcardComponent = ({ card, onNext, onPrevious }) => {
               playAudio();
             }}
           >
-            🔊 Listen to Pronunciation
+            <Volume2 size={20} />
           </button>
+          <div className="flip-hint">Tap to see definition</div>
         </div>
-
+        
         <div className="flashcard-back">
-          <div className="word-definition">{card.definition}</div>
+          <div className="word-definition">
+            <strong>Definition:</strong>
+            <p>{card.definition}</p>
+          </div>
+          
           {card.culturalNote && (
             <div className="cultural-note">
-              <strong>Cultural Note:</strong> {card.culturalNote}
+              <strong>Cultural Note:</strong>
+              <p>{card.culturalNote}</p>
             </div>
           )}
+          
+          <div className="flip-hint">Tap to see word</div>
         </div>
       </div>
 
