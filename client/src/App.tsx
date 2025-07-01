@@ -11,7 +11,7 @@ import { Toaster } from "./components/ui/toaster";
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen" style={{ backgroundColor: 'hsl(var(--background))' }}>
         <Switch>
           <Route path="/" component={OnboardingPage} />
           <Route path="/onboarding" component={OnboardingPage} />
