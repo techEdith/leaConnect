@@ -1,6 +1,7 @@
 
 /// <reference types="vite/client" />
 
+// In client/src/vite-env.d.ts
 interface ImportMetaEnv {
   readonly VITE_FIREBASE_API_KEY: "AIzaSyC5G-r0Rrq2V-DWwn5rjVGc4fefHgN0dC8"
   readonly VITE_FIREBASE_AUTH_DOMAIN: "leaconnectdb.firebaseapp.com"
