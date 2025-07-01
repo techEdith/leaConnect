@@ -57,8 +57,10 @@ export const getUserProfile = async (userId: number) => {
   return response.json();
 };
 
+const API_BASE_URL = 'http://localhost:3001/api';
+
 export const getLanguages = async () => {
-  const response = await fetch('/api/languages');
+  const response = await fetch(`${API_BASE_URL}/languages`);
   
   if (!response.ok) {
     throw new Error('Failed to fetch languages');
@@ -68,7 +70,7 @@ export const getLanguages = async () => {
 };
 
 export const getDialects = async (languageId: number) => {
-  const response = await fetch(`/api/languages/${languageId}/dialects`);
+  const response = await fetch(`${API_BASE_URL}/languages/${languageId}/dialects`);
   
   if (!response.ok) {
     throw new Error('Failed to fetch dialects');
