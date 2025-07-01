@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { flashcards } from '../data/flashcards';
@@ -66,9 +65,9 @@ const DictionaryScreen = () => {
                   <Volume2 size={18} />
                 </button>
               </div>
-              
+
               <p className="word-definition">{card.definition}</p>
-              
+
               {card.culturalNote && (
                 <div className="cultural-note-small">
                   <strong>Cultural Note:</strong> {card.culturalNote}

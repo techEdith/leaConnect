@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import FeatureCard from '../components/common/FeatureCard';
@@ -43,7 +42,7 @@ const HomeScreen = ({ user, onLogout }) => {
         </button>
       </header>
 
-   
+
     <div className="screen-content">
       <div className="header">
         <div className="logo">L.E.A.</div>

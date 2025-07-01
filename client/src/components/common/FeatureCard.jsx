@@ -1,7 +1,13 @@
+import React, { useState } from 'react';
 
-import React from 'react';
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  onClick?: () => void;
+}
 
-const FeatureCard = ({ icon, title, description, onClick }) => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, onClick }) => {
   return (
     <div className="feature-card" onClick={onClick}>
       <div className="feature-icon">

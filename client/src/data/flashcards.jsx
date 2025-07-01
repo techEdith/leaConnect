@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const flashcards = [
   {
     id: 1,

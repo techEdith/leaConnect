@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgress } from '../hooks/useProgress';
@@ -42,7 +41,7 @@ const ProgressScreen = ({ user, onLogout })  => {
           Sign Out
         </button>
       </div>
-      
+
     <div className="screen-content">
       <div className="screen-header">
         <button 

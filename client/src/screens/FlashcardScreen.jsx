@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FlashcardComponent from '../components/flashcards/FlashcardComponent';
@@ -17,7 +16,7 @@ const FlashcardScreen = () => {
     // Mark current card as studied
     if (!studiedCards.has(currentCardIndex)) {
       setStudiedCards(prev => new Set([...prev, currentCardIndex]));
-      
+
       // Update progress in Firebase
       if (auth.currentUser) {
         try {

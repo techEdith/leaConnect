@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, BookOpen, Search, TrendingUp } from 'lucide-react';
@@ -19,7 +18,7 @@ const BottomNavigation = () => {
       {navItems.map((item) => {
         const Icon = item.icon;
         const isActive = location.pathname === item.path;
-        
+
         return (
           <button
             key={item.path}

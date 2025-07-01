@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Volume2 } from 'lucide-react';
 
@@ -39,20 +38,20 @@ const FlashcardComponent = ({ card, onNext, onPrevious }) => {
           </button>
           <div className="flip-hint">Tap to see definition</div>
         </div>
-        
+
         <div className="flashcard-back">
           <div className="word-definition">
             <strong>Definition:</strong>
             <p>{card.definition}</p>
           </div>
-          
+
           {card.culturalNote && (
             <div className="cultural-note">
               <strong>Cultural Note:</strong>
               <p>{card.culturalNote}</p>
             </div>
           )}
-          
+
           <div className="flip-hint">Tap to see word</div>
         </div>
       </div>
