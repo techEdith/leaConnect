@@ -136,7 +136,7 @@ export default function OnboardingWizard() {
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
-          
+
           {/* Header */}
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-center justify-between">
@@ -177,7 +177,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
           Let's help you connect with your cultural roots and strengthen family bonds through language learning.
         </p>
       </div>
-      
+
       <div className="grid md:grid-cols-3 gap-6 mb-8">
         <div className="text-center p-4">
           <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
