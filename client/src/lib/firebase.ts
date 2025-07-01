@@ -7,24 +7,34 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-export interface FirebaseConfig {
-  apiKey: string;
-  authDomain: string;
-  projectId: string;
-  storageBucket: string;
-  messagingSenderId: string;
-  appId: string;
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAI0dDyKaIj0ncISK-OY7zsnAqDz8yRIFY",
+  authDomain: "lea-connect.firebaseapp.com",
+  projectId: "lea-connect",
+  storageBucket: "lea-connect.firebasestorage.app",
+  messagingSenderId: "764188649706",
+  appId: "1:764188649706:web:ee72e67a68f4e3d3620f93",
+  measurementId: "G-YNB0FZRDBV",
+};
+// Firebase configuration will be loaded from environment variables
+// In your client/src/vite-env.d.ts
+interface ImportMetaEnv {
+  readonly VITE_FIREBASE_API_KEY: string;
+  readonly VITE_FIREBASE_AUTH_DOMAIN: string;
+  readonly VITE_FIREBASE_PROJECT_ID: string;
+  readonly VITE_FIREBASE_STORAGE_BUCKET: string;
+  readonly VITE_FIREBASE_MESSAGING_SENDER_ID: string;
+  readonly VITE_FIREBASE_APP_ID: string;
+  // add other environment variables if needed
 }
 
-// Firebase configuration will be loaded from environment variables
-const firebaseConfig: FirebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
-};
+interface ImportMeta {
+  readonly env: ImportMetaEnv;
+}
 
 // Check if Firebase is configured
 export const isFirebaseConfigured = () => {
