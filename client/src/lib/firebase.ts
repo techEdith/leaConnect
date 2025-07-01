@@ -27,6 +27,11 @@ const firebaseConfig: FirebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
 };
 
+// Check if Firebase is configured
+export const isFirebaseConfigured = () => {
+  return Object.values(firebaseConfig).every(value => value !== "");
+};
+
 // Initialize Firebase only if config is available
 let app: any = null;
 let analytics: any = null;
@@ -46,9 +51,6 @@ export { auth, db, storage };
 
 // For now, we'll use the REST API instead of Firebase directly
 // This allows the app to work with the current backend setup
-export const isFirebaseConfigured = () => {
-  return Object.values(firebaseConfig).every(value => value !== "");
-};
 
 // Firebase service functions (to be implemented when Firebase is set up)
 export const saveOnboardingData = async (userId: number, data: any) => {
