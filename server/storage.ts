@@ -5,26 +5,26 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  
+
   // User profile operations
   getUserProfile(userId: number): Promise<UserProfile | undefined>;
   createUserProfile(profile: InsertUserProfile): Promise<UserProfile>;
   updateUserProfile(userId: number, profile: Partial<InsertUserProfile>): Promise<UserProfile>;
-  
+
   // Family member operations
   getFamilyMembers(userId: number): Promise<FamilyMember[]>;
   createFamilyMember(member: InsertFamilyMember): Promise<FamilyMember>;
   deleteFamilyMember(id: number): Promise<void>;
-  
+
   // Language operations
   getLanguages(): Promise<Language[]>;
   getLanguageByCode(code: string): Promise<Language | undefined>;
   createLanguage(language: InsertLanguage): Promise<Language>;
-  
+
   // Dialect operations
   getDialectsByLanguage(languageId: number): Promise<Dialect[]>;
   createDialect(dialect: InsertDialect): Promise<Dialect>;
-  
+
   // Onboarding operations
   completeOnboarding(userId: number, data: OnboardingData): Promise<UserProfile>;
 }
@@ -44,7 +44,7 @@ export class MemStorage implements IStorage {
     this.languages = new Map();
     this.dialects = new Map();
     this.currentId = 1;
-    
+
     // Initialize with sample languages
     this.initializeLanguages();
   }
@@ -140,11 +140,11 @@ export class MemStorage implements IStorage {
       id, 
       createdAt: new Date() 
     };
-    
+
     const existing = this.familyMembers.get(member.userId) || [];
     existing.push(familyMember);
     this.familyMembers.set(member.userId, existing);
-    
+
     return familyMember;
   }
 
@@ -181,11 +181,11 @@ export class MemStorage implements IStorage {
   async createDialect(dialect: InsertDialect): Promise<Dialect> {
     const id = this.currentId++;
     const newDialect: Dialect = { ...dialect, id };
-    
+
     const existing = this.dialects.get(dialect.languageId) || [];
     existing.push(newDialect);
     this.dialects.set(dialect.languageId, existing);
-    
+
     return newDialect;
   }
 
@@ -193,7 +193,7 @@ export class MemStorage implements IStorage {
     // Create or update user profile
     const existingProfile = await this.getUserProfile(userId);
     let profile: UserProfile;
-    
+
     if (existingProfile) {
       profile = await this.updateUserProfile(userId, {
         nativeLanguage: data.nativeLanguage,

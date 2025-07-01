@@ -22,7 +22,7 @@ app.get('/api/languages', async (req, res) => {
 app.get('/api/languages/:id/dialects', async (req, res) => {
   try {
     const languageId = parseInt(req.params.id);
-    const dialects = await storage.getDialectsByLanguageId(languageId);
+    const dialects = await storage.getDialectsByLanguage(languageId);
     res.json(dialects);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch dialects' });
@@ -45,7 +45,7 @@ app.get('/api/user/:id/profile', async (req, res) => {
 app.get('/api/user/:id/family-members', async (req, res) => {
   try {
     const userId = parseInt(req.params.id);
-    const familyMembers = await storage.getFamilyMembersByUserId(userId);
+    const familyMembers = await storage.getFamilyMembers(userId);
     res.json(familyMembers);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch family members' });

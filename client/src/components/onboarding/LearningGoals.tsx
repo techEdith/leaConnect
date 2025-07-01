@@ -80,7 +80,7 @@ export default function LearningGoals({
         {GOAL_OPTIONS.map((option) => {
           const Icon = option.icon;
           const isSelected = selectedGoalType === 'preset' && dailyGoal === option.value;
-          
+
           return (
             <button
               key={option.value}
