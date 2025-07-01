@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, ArrowRight, Search } from "lucide-react";
-import { getLanguages } from "@/lib/firebase";
+import { Search, ArrowLeft, ArrowRight, Globe } from "lucide-react";
 import type { Language } from "@shared/schema";
 
 interface LanguageSelectionProps {
@@ -21,98 +20,109 @@ export default function LanguageSelection({
   onBack, 
   canProceed 
 }: LanguageSelectionProps) {
+  const [languages, setLanguages] = useState<Language[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  
-  const { data: languages = [], isLoading, error } = useQuery({
-    queryKey: ['/api/languages'],
-    queryFn: () => getLanguages(),
-  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const filteredLanguages = languages.filter((language: Language) =>
-    language.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    language.nativeName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    fetchLanguages();
+  }, []);
 
-  const handleLanguageSelect = (language: Language) => {
-    onLanguageSelect(language);
+  const fetchLanguages = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/languages');
+      if (!response.ok) {
+        throw new Error('Failed to fetch languages');
+      }
+      const data = await response.json();
+      setLanguages(data);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load languages');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  if (isLoading) {
+  const filteredLanguages = languages.filter(language =>
+    language.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  if (loading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      <div className="max-w-2xl mx-auto p-6">
+        <div className="text-center py-8">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p>Loading languages...</p>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="text-center py-12">
-        <p className="text-red-500">Failed to load languages. Please try again.</p>
+      <div className="max-w-2xl mx-auto p-6">
+        <div className="text-center py-8">
+          <p className="text-red-600 mb-4">{error}</p>
+          <Button onClick={fetchLanguages} variant="outline">
+            Try Again
+          </Button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div>
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold text-neutral mb-3">Choose Your Native Language</h2>
-        <p className="text-gray-600">Select the language you'd like to learn or teach to your family.</p>
+    <div className="max-w-2xl mx-auto p-6">
+      <div className="text-center mb-8">
+        <Globe className="w-16 h-16 text-primary mx-auto mb-4" />
+        <h2 className="text-3xl font-bold text-neutral mb-2">Choose Your Heritage Language</h2>
+        <p className="text-gray-600">Select the language you want to learn or reconnect with</p>
       </div>
 
-      {/* Search Bar */}
       <div className="relative mb-6">
-        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-          <Search className="text-gray-400" size={20} />
-        </div>
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
         <Input
           type="text"
-          placeholder="Search for your language..."
+          placeholder="Search languages..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full pl-12 pr-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent"
+          className="pl-10 py-3 text-lg border-2 border-gray-200 rounded-xl focus:border-primary transition-colors"
         />
       </div>
 
-      {/* Languages Grid */}
-      <div className="mb-6">
-        <h3 className="font-semibold text-neutral mb-4">
-          {searchTerm ? 'Search Results' : 'Available Languages'}
-        </h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-96 overflow-y-auto">
-          {filteredLanguages.map((language: Language) => (
-            <button
-              key={language.id}
-              onClick={() => handleLanguageSelect(language)}
-              className={`p-4 border rounded-xl hover:border-primary hover:bg-blue-50 transition-all duration-300 text-left group ${
-                selectedLanguage?.id === language.id 
-                  ? 'border-primary bg-blue-50' 
-                  : 'border-gray-200'
-              }`}
-            >
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">{language.flag}</span>
-                <div>
-                  <div className={`font-medium ${
-                    selectedLanguage?.id === language.id 
-                      ? 'text-primary' 
-                      : 'text-neutral group-hover:text-primary'
-                  }`}>
-                    {language.name}
-                  </div>
-                  <div className="text-xs text-gray-500">{language.nativeName}</div>
-                </div>
+      <div className="grid gap-3 mb-8 max-h-96 overflow-y-auto">
+        {filteredLanguages.map((language) => (
+          <Card
+            key={language.id}
+            className={`p-4 cursor-pointer transition-all duration-300 hover:shadow-md ${
+              selectedLanguage?.id === language.id
+                ? 'ring-2 ring-primary bg-primary/5 border-primary'
+                : 'border-gray-200 hover:border-primary/50'
+            }`}
+            onClick={() => onLanguageSelect(language)}
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-semibold text-lg text-neutral">{language.name}</h3>
+                <p className="text-gray-600 text-sm">{language.nativeName}</p>
               </div>
-            </button>
-          ))}
-        </div>
-        
-        {filteredLanguages.length === 0 && searchTerm && (
-          <div className="text-center py-8 text-gray-500">
-            No languages found matching "{searchTerm}". Try a different search term.
-          </div>
-        )}
+              {selectedLanguage?.id === language.id && (
+                <div className="w-6 h-6 bg-primary rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm">✓</span>
+                </div>
+              )}
+            </div>
+          </Card>
+        ))}
       </div>
+
+      {filteredLanguages.length === 0 && searchTerm && (
+        <div className="text-center py-8">
+          <p className="text-gray-500">No languages found matching "{searchTerm}"</p>
+        </div>
+      )}
 
       <div className="flex space-x-4">
         <Button

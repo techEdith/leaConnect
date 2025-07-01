@@ -1,4 +1,3 @@
-
 // Firebase configuration for future integration
 // This file sets up the structure for Firebase integration
 
@@ -62,24 +61,24 @@ export const saveOnboardingData = async (userId: number, data: any) => {
     },
     body: JSON.stringify(data),
   });
-  
+
   if (!response.ok) {
     throw new Error('Failed to save onboarding data');
   }
-  
+
   return response.json();
 };
 
 export const getUserProfile = async (userId: number) => {
   const response = await fetch(`/api/user/${userId}/profile`);
-  
+
   if (!response.ok) {
     if (response.status === 404) {
       return null;
     }
     throw new Error('Failed to fetch user profile');
   }
-  
+
   return response.json();
 };
 
@@ -87,20 +86,20 @@ const API_BASE_URL = '/api';
 
 export const getLanguages = async () => {
   const response = await fetch(`${API_BASE_URL}/languages`);
-  
+
   if (!response.ok) {
     throw new Error('Failed to fetch languages');
   }
-  
+
   return response.json();
 };
 
 export const getDialects = async (languageId: number) => {
   const response = await fetch(`${API_BASE_URL}/languages/${languageId}/dialects`);
-  
+
   if (!response.ok) {
     throw new Error('Failed to fetch dialects');
   }
-  
+
   return response.json();
 };
