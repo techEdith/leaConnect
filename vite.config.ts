@@ -32,12 +32,13 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     allowedHosts: [
-      '59067e25-e8c1-47a5-a7b8-c0fe5812fa55-00-1v9xnesckftrz.worf.replit.dev';
+      '59067e25-e8c1-47a5-a7b8-c0fe5812fa55-00-1v9xnesckftrz.worf.replit.dev'
+    ],
     port: 5173,
     fs: {
       strict: true,
       deny: ["**/.*"]
-      ]
     }
+  }
   }
 });
