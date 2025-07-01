@@ -1,0 +1,148 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* LeaConnect Brand Colors */
+  --primary: 147 51 234; /* Purple #9333ea */
+  --primary-foreground: 255 255 255;
+  --secondary: 234 179 8; /* Gold #eab308 */
+  --secondary-foreground: 15 23 42;
+  --accent: 34 197 94; /* Green #22c55e */
+  --accent-foreground: 255 255 255;
+  --neutral: 15 23 42; /* Dark slate */
+  --neutral-foreground: 255 255 255;
+  
+  /* Base colors */
+  --background: 255 255 255;
+  --foreground: 15 23 42;
+  --card: 255 255 255;
+  --card-foreground: 15 23 42;
+  --popover: 255 255 255;
+  --popover-foreground: 15 23 42;
+  --muted: 248 250 252;
+  --muted-foreground: 100 116 139;
+  --border: 226 232 240;
+  --input: 226 232 240;
+  --ring: 147 51 234;
+  --radius: 0.5rem;
+  
+  /* Destructive */
+  --destructive: 239 68 68;
+  --destructive-foreground: 255 255 255;
+}
+
+.dark {
+  --background: 15 23 42;
+  --foreground: 248 250 252;
+  --card: 30 41 59;
+  --card-foreground: 248 250 252;
+  --popover: 30 41 59;
+  --popover-foreground: 248 250 252;
+  --muted: 51 65 85;
+  --muted-foreground: 148 163 184;
+  --border: 51 65 85;
+  --input: 51 65 85;
+  --ring: 147 51 234;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Custom utility classes */
+.text-primary {
+  color: rgb(var(--primary));
+}
+
+.text-secondary {
+  color: rgb(var(--secondary));
+}
+
+.text-accent {
+  color: rgb(var(--accent));
+}
+
+.text-neutral {
+  color: rgb(var(--neutral));
+}
+
+.bg-primary {
+  background-color: rgb(var(--primary));
+}
+
+.bg-secondary {
+  background-color: rgb(var(--secondary));
+}
+
+.bg-accent {
+  background-color: rgb(var(--accent));
+}
+
+.bg-neutral {
+  background-color: rgb(var(--neutral));
+}
+
+/* Onboarding specific styles */
+.onboarding-container {
+  background: linear-gradient(135deg, rgb(var(--primary) / 0.1) 0%, rgb(var(--secondary) / 0.1) 100%);
+  min-height: 100vh;
+}
+
+.language-card {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.language-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.language-card.selected {
+  border-color: rgb(var(--primary));
+  background: linear-gradient(135deg, rgb(var(--primary) / 0.1) 0%, rgb(var(--accent) / 0.1) 100%);
+}
+
+/* Font Awesome fallbacks */
+.fa-search::before { content: "🔍"; }
+.fa-user::before { content: "👤"; }
+.fa-users::before { content: "👥"; }
+.fa-target::before { content: "🎯"; }
+.fa-check::before { content: "✓"; }
+.fa-arrow-left::before { content: "←"; }
+.fa-arrow-right::before { content: "→"; }
+.fa-globe::before { content: "🌍"; }
+.fa-heart::before { content: "❤️"; }
+.fa-star::before { content: "⭐"; }
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+}
