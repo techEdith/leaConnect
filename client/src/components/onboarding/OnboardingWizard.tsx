@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import React from "react";
+import { useState, useEffect } from "react";
+import { Card } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Globe, Heart, ArrowLeft, ArrowRight } from "lucide-react";
 import LanguageSelection from "./LanguageSelection";
@@ -8,7 +9,7 @@ import DialectSelection from "./DialectSelection";
 import FamilyMembers from "./FamilyMembers";
 import LearningGoals from "./LearningGoals";
 import CompletionScreen from "./CompletionScreen";
-import type { Language, Dialect, FamilyMember } from "@shared/schema";
+import type { Language, Dialect, FamilyMember } from "../../../../shared/schema";
 
 export interface OnboardingState {
   currentStep: number;

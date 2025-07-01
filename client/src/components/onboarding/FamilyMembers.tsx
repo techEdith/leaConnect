@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent } from "@/components/ui/card";
+import React from "react";
+import { useState, useEffect } from "react";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select";
+import { Card, CardContent } from "../../components/ui/card";
 import { ArrowLeft, ArrowRight, Plus, X, Sprout, TreePine, Mountain, Crown } from "lucide-react";
-import type { FamilyMember } from "@shared/schema";
+import type { FamilyMember } from "../../../../shared/schema";
 
 interface FamilyMembersProps {
   familyMembers: Omit<FamilyMember, 'id' | 'userId' | 'createdAt'>[];

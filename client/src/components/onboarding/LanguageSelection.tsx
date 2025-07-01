@@ -1,9 +1,10 @@
+import React from "react";
 import { useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Card } from "../../components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
 import { Search, ArrowLeft, ArrowRight, Globe } from "lucide-react";
-import type { Language } from "@shared/schema";
+import type { Language } from "../../../../shared/schema";
 
 interface LanguageSelectionProps {
   selectedLanguage: Language | null;

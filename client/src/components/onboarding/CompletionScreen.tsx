@@ -1,11 +1,12 @@
+import React from "react";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent } from "../../components/ui/card";
 import { Check, ArrowRight, Globe, Users, Target, Clock } from "lucide-react";
 import { useLocation } from "wouter";
-import { saveOnboardingData } from "@/lib/firebase";
-import type { Language, Dialect, FamilyMember } from "@shared/schema";
+import { saveOnboardingData } from "../../lib/firebase";
+import type { Language, Dialect, FamilyMember } from "../../../../shared/schema";
 
 interface CompletionScreenProps {
   selectedLanguage: Language;
@@ -13,6 +14,7 @@ interface CompletionScreenProps {
   familyMembers: Omit<FamilyMember, 'id' | 'userId' | 'createdAt'>[];
   dailyGoal: number;
 }
+
 
 export default function CompletionScreen({
   selectedLanguage,

@@ -1,11 +1,13 @@
+import React from "react";
 import { useState, useEffect } from "react";
+
 import { useQuery } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
+import { Button } from "../../components/ui/button";
+import { RadioGroup, RadioGroupItem } from "../../components/ui/radio-group";
+import { Label } from "../../components/ui/label";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { getDialects } from "@/lib/firebase";
-import type { Language, Dialect } from "@shared/schema";
+import { getDialects } from "../../lib/firebase";
+import type { Language, Dialect } from "../../../../shared/schema";
 
 interface DialectSelectionProps {
   selectedLanguage: Language;
