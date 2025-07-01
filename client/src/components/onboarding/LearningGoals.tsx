@@ -162,3 +162,125 @@ export default function LearningGoals({
     </div>
   );
 }
+import React, { useState } from "react";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent } from "../../components/ui/card";
+import { Input } from "../../components/ui/input";
+import { ArrowLeft, Target, Clock, Trophy, Zap } from "lucide-react";
+
+interface LearningGoalsProps {
+  dailyGoal: number;
+  onGoalChange: (goal: number) => void;
+  onBack: () => void;
+  onComplete: () => void;
+  canProceed: boolean;
+}
+
+const PRESET_GOALS = [
+  { words: 3, label: "Beginner", time: "5 min/day", icon: Target, color: "bg-green-100 text-green-600" },
+  { words: 5, label: "Casual", time: "10 min/day", icon: Clock, color: "bg-blue-100 text-blue-600" },
+  { words: 10, label: "Regular", time: "15 min/day", icon: Trophy, color: "bg-purple-100 text-purple-600" },
+  { words: 15, label: "Intense", time: "20+ min/day", icon: Zap, color: "bg-orange-100 text-orange-600" },
+];
+
+export default function LearningGoals({ 
+  dailyGoal, 
+  onGoalChange, 
+  onBack, 
+  onComplete, 
+  canProceed 
+}: LearningGoalsProps) {
+  const [customGoal, setCustomGoal] = useState("");
+  const [isCustom, setIsCustom] = useState(false);
+
+  const handlePresetGoal = (words: number) => {
+    setIsCustom(false);
+    setCustomGoal("");
+    onGoalChange(words);
+  };
+
+  const handleCustomGoal = (value: string) => {
+    setCustomGoal(value);
+    setIsCustom(true);
+    const goal = parseInt(value, 10);
+    if (!isNaN(goal) && goal > 0) {
+      onGoalChange(goal);
+    }
+  };
+
+  return (
+    <div>
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold text-neutral mb-3">Set Your Learning Goals</h2>
+        <p className="text-gray-600">How many new words would you like to learn each day?</p>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 mb-6">
+        {PRESET_GOALS.map((preset) => {
+          const Icon = preset.icon;
+          const isSelected = !isCustom && dailyGoal === preset.words;
+          return (
+            <button
+              key={preset.words}
+              onClick={() => handlePresetGoal(preset.words)}
+              className={`p-4 border-2 rounded-xl transition-all ${
+                isSelected
+                  ? 'border-primary bg-blue-50'
+                  : 'border-gray-200 hover:border-primary hover:bg-blue-50'
+              }`}
+            >
+              <div className={`w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-3 ${preset.color}`}>
+                <Icon size={20} />
+              </div>
+              <div className="text-center">
+                <div className="font-semibold text-neutral">{preset.words} words</div>
+                <div className="text-sm text-gray-600">{preset.label}</div>
+                <div className="text-xs text-gray-500">{preset.time}</div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      <Card className="bg-gray-50 border-2 border-dashed border-gray-300 mb-8">
+        <CardContent className="p-6">
+          <h3 className="font-semibold text-neutral mb-4">Custom Goal</h3>
+          <div className="flex items-center space-x-4">
+            <Input
+              type="number"
+              placeholder="Enter custom goal"
+              value={customGoal}
+              onChange={(e) => handleCustomGoal(e.target.value)}
+              className="flex-1"
+              min="1"
+            />
+            <span className="text-gray-600">words per day</span>
+          </div>
+          {isCustom && dailyGoal > 0 && (
+            <p className="text-sm text-gray-600 mt-2">
+              Great! You'll learn {dailyGoal} words daily.
+            </p>
+          )}
+        </CardContent>
+      </Card>
+
+      <div className="flex space-x-4">
+        <Button
+          onClick={onBack}
+          variant="outline"
+          className="flex-1 bg-gray-100 text-gray-700 py-3 rounded-xl font-medium hover:bg-gray-200 transition-colors"
+        >
+          <ArrowLeft className="mr-2" size={16} />
+          Back
+        </Button>
+        <Button
+          onClick={onComplete}
+          disabled={!canProceed}
+          className="flex-1 bg-gradient-to-r from-primary to-accent text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300 disabled:opacity-50"
+        >
+          Complete Setup
+        </Button>
+      </div>
+    </div>
+  );
+}
