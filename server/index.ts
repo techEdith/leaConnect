@@ -18,6 +18,7 @@ app.get('/health', (req, res) => {
 registerRoutes(app).then(httpServer => {
   httpServer.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
+    console.log(`📱 Frontend available at: http://localhost:5173`);
   });
 }).catch(error => {
   console.error('Failed to start server:', error);
