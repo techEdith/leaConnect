@@ -1,6 +1,6 @@
-// Import the functions you need from the SDKs you need
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Firebase configuration for future integration
+// This file sets up the structure for Firebase integration
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -8,15 +8,14 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
-// Firebase configuration for future integration
-// This file sets up the structure for Firebase integration
-
+export interface FirebaseConfig {
+  apiKey: string;
+  authDomain: string;
+  projectId: string;
+  storageBucket: string;
+  messagingSenderId: string;
+  appId: string;
+}
 
 // Firebase configuration will be loaded from environment variables
 const firebaseConfig: FirebaseConfig = {
@@ -27,6 +26,23 @@ const firebaseConfig: FirebaseConfig = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
   appId: import.meta.env.VITE_FIREBASE_APP_ID || "",
 };
+
+// Initialize Firebase only if config is available
+let app: any = null;
+let analytics: any = null;
+let auth: any = null;
+let db: any = null;
+let storage: any = null;
+
+if (isFirebaseConfigured()) {
+  app = initializeApp(firebaseConfig);
+  analytics = getAnalytics(app);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  storage = getStorage(app);
+}
+
+export { auth, db, storage };
 
 // For now, we'll use the REST API instead of Firebase directly
 // This allows the app to work with the current backend setup

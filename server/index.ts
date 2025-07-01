@@ -1,6 +1,7 @@
+
 import express from 'express';
 import cors from 'cors';
-import { routes } from './routes';
+import { registerRoutes } from './routes';
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -9,14 +10,17 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use('/api', routes);
-
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
+// Register routes and start server
+registerRoutes(app).then(httpServer => {
+  httpServer.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
+  });
+}).catch(error => {
+  console.error('Failed to start server:', error);
+  process.exit(1);
 });
