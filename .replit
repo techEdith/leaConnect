@@ -48,4 +48,4 @@ args = "npm run dev"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "node server/index.ts"
+args = "npx tsx server/index.ts"

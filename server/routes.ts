@@ -85,7 +85,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const validatedData = onboardingDataSchema.parse(req.body);
       const profile = await storage.completeOnboarding(userId, validatedData);
-      
+
       res.json(profile);
     } catch (error) {
       if (error instanceof z.ZodError) {
