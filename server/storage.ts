@@ -51,14 +51,11 @@ export class MemStorage implements IStorage {
 
   private initializeLanguages() {
     const sampleLanguages: Language[] = [
-      { id: 1, name: "French", nativeName: "Français", flag: "🇫🇷", code: "fr" },
-      { id: 2, name: "Swahili", nativeName: "Kiswahili", flag: "🇰🇪", code: "sw" },
-      { id: 3, name: "Wolof", nativeName: "Wollof", flag: "🇸🇳", code: "wo" },
-      { id: 4, name: "Lingala", nativeName: "Lingála", flag: "🇨🇩", code: "ln" },
-      { id: 5, name: "Yoruba", nativeName: "Yorùbá", flag: "🇳🇬", code: "yo" },
-      { id: 6, name: "Arabic", nativeName: "العربية", flag: "🇸🇦", code: "ar" },
-      { id: 7, name: "Mandarin", nativeName: "普通话", flag: "🇨🇳", code: "zh" },
-      { id: 8, name: "Spanish", nativeName: "Español", flag: "🇪🇸", code: "es" },
+      { id: 1, name: "English", nativeName: "English", flag: "🇺🇸", code: "en" },
+      { id: 2, name: "French", nativeName: "Français", flag: "🇫🇷", code: "fr" },
+      { id: 3, name: "Arabic", nativeName: "العربية", flag: "🇸🇦", code: "ar" },
+      { id: 4, name: "Mandarin", nativeName: "普通话", flag: "🇨🇳", code: "zh" },
+      { id: 5, name: "Spanish", nativeName: "Español", flag: "🇪🇸", code: "es" },
     ];
 
     sampleLanguages.forEach(lang => {
@@ -68,8 +65,9 @@ export class MemStorage implements IStorage {
     // Initialize dialects
     this.dialects.set(1, [
       { id: 1, languageId: 1, name: "Swahili", description: "Tanzania Swahili", region: "Tanzania" },
-      { id: 2, languageId: 1, name: "Wolof", description: "Wolof", region: "Senegal and Gambia" },
-      { id: 3, languageId: 1, name: "Kenyan Swahili", description: "Kenyan Swahili variation", region: "Kenya" },
+      { id: 2, languageId: 1, name: "Lingala", description: "Lingala", region: "Se" },
+      { id: 3, languageId: 1, name: "Wolof", description: "Wolof", region: "Senegal and Gambia" },
+      { id: 4, languageId: 1, name: "Yorùbá", description: "Yorùbá", region: "Nigeria" }
     ]);
 
     this.dialects.set(2, [
