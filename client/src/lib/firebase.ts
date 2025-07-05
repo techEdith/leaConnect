@@ -1,112 +1,120 @@
-// Firebase configuration for future integration
-// This file sets up the structure for Firebase integration
 
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-
 import { getAuth, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
 
+// Use the same Firebase configuration as in services/firebase.js
 const firebaseConfig = {
-  apiKey: "AIzaSyAI0dDyKaIj0ncISK-OY7zsnAqDz8yRIFY",
-  authDomain: "lea-connect.firebaseapp.com",
-  projectId: "lea-connect",
-  storageBucket: "lea-connect.firebasestorage.app",
-  messagingSenderId: "764188649706",
-  appId: "1:764188649706:web:ee72e67a68f4e3d3620f93",
-  measurementId: "G-YNB0FZRDBV",
+  apiKey: "AIzaSyC5G-r0Rrq2V-DWwn5rjVGc4fefHgN0dC8",
+  authDomain: "leaconnectdb.firebaseapp.com",
+  databaseURL: "https://leaconnectdb-default-rtdb.firebaseio.com",
+  projectId: "leaconnectdb",
+  storageBucket: "leaconnectdb.firebasestorage.app",
+  messagingSenderId: "1004261904619",
+  appId: "1:1004261904619:web:efded380fcc912fa53eeae",
+  measurementId: "G-6557XR2YPQ"
 };
-// Firebase configuration will be loaded from environment variables
-// In your client/src/vite-env.d.ts
-interface ImportMetaEnv {
-  readonly VITE_FIREBASE_API_KEY: string;
-  readonly VITE_FIREBASE_AUTH_DOMAIN: string;
-  readonly VITE_FIREBASE_PROJECT_ID: string;
-  readonly VITE_FIREBASE_STORAGE_BUCKET: string;
-  readonly VITE_FIREBASE_MESSAGING_SENDER_ID: string;
-  readonly VITE_FIREBASE_APP_ID: string;
-  // add other environment variables if needed
-}
-
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
-}
 
 // Check if Firebase is configured
 export const isFirebaseConfigured = () => {
   return Object.values(firebaseConfig).every(value => value !== "");
 };
 
-// Initialize Firebase only if config is available
-let app: any = null;
-let analytics: any = null;
-let auth: any = null;
-let db: any = null;
-let storage: any = null;
+// Initialize Firebase only if no app exists, otherwise use existing app
+let app;
+let analytics = null;
+let auth = null;
+let db = null;
+let storage = null;
 
 if (isFirebaseConfigured()) {
-  app = initializeApp(firebaseConfig);
-  analytics = getAnalytics(app);
+  // Check if Firebase app already exists, if not create it
+  app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+  
+  // Only initialize analytics in browser environment
+  if (typeof window !== 'undefined') {
+    analytics = getAnalytics(app);
+  }
+  
   auth = getAuth(app);
   db = getFirestore(app);
   storage = getStorage(app);
 }
 
-export { auth, db, storage };
+export { auth, db, storage, analytics };
 
-// For now, we'll use the REST API instead of Firebase directly
-// This allows the app to work with the current backend setup
-
-// Firebase service functions (to be implemented when Firebase is set up)
+// API service functions for onboarding integration
 export const saveOnboardingData = async (userId: number, data: any) => {
-  // For now, use the REST API
-  const response = await fetch(`/api/user/${userId}/complete-onboarding`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
+  try {
+    const response = await fetch(`/api/user/${userId}/complete-onboarding`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
 
-  if (!response.ok) {
-    throw new Error('Failed to save onboarding data');
+    if (!response.ok) {
+      throw new Error(`Failed to save onboarding data: ${response.statusText}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error saving onboarding data:', error);
+    throw error;
   }
-
-  return response.json();
 };
 
 export const getUserProfile = async (userId: number) => {
-  const response = await fetch(`/api/user/${userId}/profile`);
+  try {
+    const response = await fetch(`/api/user/${userId}/profile`);
 
-  if (!response.ok) {
-    if (response.status === 404) {
-      return null;
+    if (!response.ok) {
+      if (response.status === 404) {
+        return null;
+      }
+      throw new Error(`Failed to fetch user profile: ${response.statusText}`);
     }
-    throw new Error('Failed to fetch user profile');
-  }
 
-  return response.json();
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
+    throw error;
+  }
 };
 
 const API_BASE_URL = '/api';
 
 export const getLanguages = async () => {
-  const response = await fetch(`${API_BASE_URL}/languages`);
+  try {
+    const response = await fetch(`${API_BASE_URL}/languages`);
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch languages');
+    if (!response.ok) {
+      throw new Error(`Failed to fetch languages: ${response.statusText}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching languages:', error);
+    throw error;
   }
-
-  return response.json();
 };
 
 export const getDialects = async (languageId: number) => {
-  const response = await fetch(`${API_BASE_URL}/languages/${languageId}/dialects`);
+  try {
+    const response = await fetch(`${API_BASE_URL}/languages/${languageId}/dialects`);
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch dialects');
+    if (!response.ok) {
+      throw new Error(`Failed to fetch dialects: ${response.statusText}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching dialects:', error);
+    throw error;
   }
-
-  return response.json();
 };
+
+export const googleProvider = new GoogleAuthProvider();
