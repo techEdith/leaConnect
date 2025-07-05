@@ -93,35 +93,142 @@ body {
 }
 
 .flashcard-container {
+  perspective: 1000px;
+  margin-bottom: 2rem;
+  min-height: 400px;
+}
+
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(15px);
   border-radius: 20px;
   padding: 2rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  margin-bottom: 2rem;
-  min-height: 350px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  align-items: center;
+  text-align: center;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .flashcard h2 {
   color: #9333ea;
-  margin-bottom: 1rem;
   font-size: 2.5rem;
   font-weight: 700;
-  text-align: center;
+  margin: 0;
 }
 
-.flashcard p {
-  font-size: 1.125rem;
-  margin-bottom: 0.75rem;
+.pronunciation-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.pronunciation-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.pronunciation-guide {
+  color: #6b7280;
+  font-style: italic;
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.word-example {
   color: #374151;
+  font-size: 1.125rem;
+  margin: 1rem 0;
   line-height: 1.6;
 }
 
-.show-answer-btn, .nav-btn {
+.flip-hint {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  margin-top: auto;
+  opacity: 0.7;
+}
+
+.translation-section {
+  margin-bottom: 1.5rem;
+}
+
+.translation-section h3 {
+  color: #9333ea;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.translation-text {
+  color: #374151;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.cultural-note-section {
+  background: rgba(147, 51, 234, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #9333ea;
+}
+
+.cultural-note-section h4 {
+  color: #9333ea;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cultural-note {
+  color: #374151;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.nav-btn {
   background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
   color: white;
   border: none;
@@ -135,7 +242,7 @@ body {
   box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
 }
 
-.show-answer-btn:hover, .nav-btn:hover {
+.nav-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
 }
@@ -143,12 +250,12 @@ body {
 .answer-buttons {
   display: flex;
   gap: 1rem;
-  margin-top: 1.5rem;
   justify-content: center;
+  margin-bottom: 1rem;
 }
 
 .correct-btn {
-  background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border: none;
   padding: 0.875rem 1.5rem;
@@ -156,12 +263,13 @@ body {
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  font-size: 0.95rem;
 }
 
 .correct-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
 
 .incorrect-btn {
@@ -174,6 +282,7 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+  font-size: 0.95rem;
 }
 
 .incorrect-btn:hover {
@@ -188,16 +297,31 @@ body {
   margin-top: 1rem;
 }
 
-.flashcard-back {
-  text-align: center;
-}
-
-.flashcard-back p {
-  margin-bottom: 1rem;
-}
-
-.flashcard-back strong {
-  color: #9333ea;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .flashcard-screen-wrapper {
+    padding: 0.5rem;
+  }
+  
+  .flashcard-front,
+  .flashcard-back {
+    padding: 1.5rem;
+  }
+  
+  .flashcard h2 {
+    font-size: 2rem;
+  }
+  
+  .answer-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .correct-btn,
+  .incorrect-btn {
+    width: 100%;
+    max-width: 200px;
+  }
 }
 
 /* Pronunciation Button Styles */
