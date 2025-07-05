@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Volume2 } from 'lucide-react';
 import { flashcards } from '../data/flashcards';
 
 interface DictionaryEntry {
@@ -15,6 +16,15 @@ interface DictionaryEntry {
 const DictionaryPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEntry, setSelectedEntry] = useState<DictionaryEntry | null>(null);
+
+  const playPronunciation = (word: string) => {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'sw'; // Swahili language code
+      utterance.rate = 0.8;
+      speechSynthesis.speak(utterance);
+    }
+  };
 
   // Convert flashcard data to dictionary entries
   const dictionaryEntries: DictionaryEntry[] = flashcards.map((card, index) => ({
@@ -60,9 +70,18 @@ const DictionaryPage: React.FC = () => {
 
         {selectedEntry && (
           <div className="entry-details">
-            <h2>{selectedEntry.swahili}</h2>
-            <p className="pronunciation">{selectedEntry.pronunciation}</p>
-            <p className="translation">{selectedEntry.english}</p>
+            <div className="entry-main">
+              <h2>{selectedEntry.swahili}</h2>
+              <button 
+                className="pronunciation-btn" 
+                onClick={() => playPronunciation(selectedEntry.swahili)}
+                title="Play pronunciation"
+              >
+                <Volume2 size={20} />
+              </button>
+            </div>
+            <p className="pronunciation">[{selectedEntry.pronunciation}]</p>
+            <p className="translation"><strong>Translation:</strong> {selectedEntry.english}</p>
             {selectedEntry.culturalContext && (
               <div className="cultural-context">
                 <h3>Cultural Context</h3>

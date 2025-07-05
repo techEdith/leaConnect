@@ -200,6 +200,90 @@ body {
   color: #9333ea;
 }
 
+/* Pronunciation Button Styles */
+.pronunciation-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.pronunciation-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-header h2 {
+  margin: 0;
+  flex: 1;
+}
+
+.pronunciation-guide {
+  color: #f59e0b;
+  font-style: italic;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.word-example {
+  color: #6b7280;
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.cultural-note-section {
+  background: rgba(147, 51, 234, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border-left: 4px solid #9333ea;
+}
+
+.cultural-note-section h4 {
+  color: #9333ea;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cultural-note-section p {
+  margin: 0;
+  color: #374151;
+  line-height: 1.5;
+}
+
+.entry-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.entry-main h2 {
+  margin: 0;
+  flex: 1;
+  color: #9333ea;
+}
+
 /* Dictionary Styles */
 .dictionary-screen {
   min-height: 100vh;
