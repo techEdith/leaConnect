@@ -142,11 +142,10 @@ function App() {
               <Route path="/dashboard" component={DashboardPage} />
               <Route component={NotFoundPage} />
             </Switch>
-            </div>
-            {user && hasCompletedOnboarding && (
-              <BottomNavigation />
-            )}
           </div>
+          {user && hasCompletedOnboarding && (
+            <BottomNavigation />
+          )}
         </div>
         <div className="phone-home-indicator"></div>
       </div>
