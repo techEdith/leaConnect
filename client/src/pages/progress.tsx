@@ -4,6 +4,7 @@ import React from 'react';
 const Trophy = () => <span>🏆</span>;
 const BookOpen = () => <span>📚</span>;
 const Target = () => <span>🎯</span>;
+const Calendar = () => <span>📅</span>;
 
 const ProgressPage: React.FC = () => {
   // Mock progress data

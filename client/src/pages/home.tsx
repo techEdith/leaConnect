@@ -20,19 +20,19 @@ const HomePage: React.FC<HomePageProps> = ({ user, onLogout }) => {
       icon: '🎯',
       title: 'Flashcard Learning',
       description: 'Learn Swahili words with audio pronunciation, translations, and cultural context from your family heritage.',
-      onClick: () => setLocation('./flashcards')
+      onClick: () => setLocation('/flashcards')
     },
     {
       icon: '📚',
       title: 'Heritage Dictionary',
       description: 'Explore a rich collection of Swahili words with definitions, family recordings, and cultural stories.',
-      onClick: () => setLocation('./dictionary')
+      onClick: () => setLocation('/dictionary')
     },
     {
       icon: '📈',
       title: 'Learning Progress',
       description: 'Track your journey in connecting with your cultural roots through language mastery.',
-      onClick: () => setLocation('./progress')
+      onClick: () => setLocation('/progress')
     },
     {
       icon: '👵',
@@ -73,7 +73,7 @@ const HomePage: React.FC<HomePageProps> = ({ user, onLogout }) => {
 
           <button 
             className="start-button" 
-            onClick={() => setLocation('./flashcards')}
+            onClick={() => setLocation('/flashcards')}
           >
             Start Learning Today
           </button>

@@ -10,6 +10,9 @@ import NotFoundPage from "./pages/not-found";
 import { Toaster } from "./components/ui/toaster";
 import AuthPage from "./pages/auth";
 import HomePage from "./pages/home";
+import FlashcardsPage from "./pages/flashcards";
+import DictionaryPage from "./pages/dictionary";
+import ProgressPage from "./pages/progress";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -99,6 +102,33 @@ function App() {
           <Route path="/home">
             {user && hasCompletedOnboarding ? (
               <HomePage user={user} onLogout={handleLogout} />
+            ) : !user ? (
+              <AuthPage onAuth={handleAuth} />
+            ) : (
+              <OnboardingPage onComplete={handleOnboardingComplete} />
+            )}
+          </Route>
+          <Route path="/flashcards">
+            {user && hasCompletedOnboarding ? (
+              <FlashcardsPage />
+            ) : !user ? (
+              <AuthPage onAuth={handleAuth} />
+            ) : (
+              <OnboardingPage onComplete={handleOnboardingComplete} />
+            )}
+          </Route>
+          <Route path="/dictionary">
+            {user && hasCompletedOnboarding ? (
+              <DictionaryPage />
+            ) : !user ? (
+              <AuthPage onAuth={handleAuth} />
+            ) : (
+              <OnboardingPage onComplete={handleOnboardingComplete} />
+            )}
+          </Route>
+          <Route path="/progress">
+            {user && hasCompletedOnboarding ? (
+              <ProgressPage />
             ) : !user ? (
               <AuthPage onAuth={handleAuth} />
             ) : (
