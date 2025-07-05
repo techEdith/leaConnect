@@ -95,17 +95,6 @@ const FlashcardsPage: React.FC = () => {
       </div>
     </div>
   );
-
-      <div className="navigation-buttons">
-        <button onClick={handlePrevious} disabled={currentCardIndex === 0}>
-          Previous
-        </button>
-        <button onClick={handleNext}>
-          Next
-        </button>
-      </div>
-    </div>
-  );
 };
 
 export default FlashcardsPage;
