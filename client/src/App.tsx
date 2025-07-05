@@ -13,7 +13,7 @@ import HomePage from "./pages/home";
 import FlashcardsPage from "./pages/flashcards";
 import DictionaryPage from "./pages/dictionary";
 import ProgressPage from "./pages/progress";
-import BottomNavigation from "./components/BottomNavigation"; // Import BottomNavigation component
+import BottomNavigation from "./components/navigation/BottomNavigation"; // Import BottomNavigation component
 
 function App() {
   const [user, setUser] = useState(null);
