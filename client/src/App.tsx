@@ -8,8 +8,8 @@ import OnboardingPage from "./pages/onboarding";
 import DashboardPage from "./pages/dashboard";
 import NotFoundPage from "./pages/not-found";
 import { Toaster } from "./components/ui/toaster";
-import AuthPage from "./pages/AuthScreen.tsx";
-import HomePage from "./pages/HomeScreen.tsx";
+import AuthPage from "./pages/auth";
+import HomePage from "./pages/home";
 
 function App() {
   const [user, setUser] = useState(null);
