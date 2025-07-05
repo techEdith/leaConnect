@@ -1,4 +1,4 @@
-import { users, userProfiles, familyMembers, languages, dialects, type User, type InsertUser, type UserProfile, type InsertUserProfile, type FamilyMember, type InsertFamilyMember, type Language, type InsertLanguage, type Dialect, type InsertDialect, type OnboardingData } from "@shared/schema";
+import { users, userProfiles, familyMembers, languages, dialects, type User, type InsertUser, type UserProfile, type InsertUserProfile, type FamilyMember, type InsertFamilyMember, type Language, type InsertLanguage, type Dialect, type InsertDialect, type OnboardingData } from "../shared/schema";
 
 export interface IStorage {
   // User operations
@@ -67,14 +67,15 @@ export class MemStorage implements IStorage {
 
     // Initialize dialects
     this.dialects.set(1, [
-      { id: 1, languageId: 1, name: "Standard French", description: "Metropolitan French (France)", region: "France" },
-      { id: 2, languageId: 1, name: "Canadian French", description: "Quebec French", region: "Canada" },
-      { id: 3, languageId: 1, name: "African French", description: "West/Central African variations", region: "Africa" },
+      { id: 1, languageId: 1, name: "Swahili", description: "Tanzania Swahili", region: "Tanzania" },
+      { id: 2, languageId: 1, name: "Wolof", description: "Wolof", region: "Senegal and Gambia" },
+      { id: 3, languageId: 1, name: "Kenyan Swahili", description: "Kenyan Swahili variation", region: "Kenya" },
     ]);
 
     this.dialects.set(2, [
-      { id: 4, languageId: 2, name: "Standard Swahili", description: "Tanzania Standard", region: "Tanzania" },
-      { id: 5, languageId: 2, name: "Kenyan Swahili", description: "Kenyan variation", region: "Kenya" },
+      { id: 4, languageId: 2, name: "Baoule", description: "West African dialect", region: "Cote d'Ivoire" },
+      { id: 5, languageId: 2, name: "Bete", description: "West African dialect", region: "Cote d'Ivoire" },
+      { id: 6, languageId: 2, name: "Gouro", description: "West African dialect", region: "Cote d'Ivoire" },
     ]);
   }
 
