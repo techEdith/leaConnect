@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { auth } from '../services/firebase';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { saveUserProfile } from '../lib/firebase';
 import { User } from 'firebase/auth';
 import '../styles/App.css';
 
@@ -37,7 +38,8 @@ const AuthPage: React.FC<AuthScreenProps> = ({ onAuth }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [fullName, setFullName] = useState<string>('');
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -52,7 +54,8 @@ const AuthPage: React.FC<AuthScreenProps> = ({ onAuth }) => {
       setEmail('');
       setPassword('');
       setConfirmPassword('');
-      setFullName('');
+      setFirstName('');
+      setLastName('');
       setError('');
       setIsSignUp(false);
       // Call onAuth callback to update parent component
@@ -82,6 +85,17 @@ const AuthPage: React.FC<AuthScreenProps> = ({ onAuth }) => {
           return;
         }
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        
+        // Save user profile data to Firebase
+        if (userCredential.user) {
+          await saveUserProfile(userCredential.user.uid, {
+            firstName,
+            lastName,
+            email,
+            onboardingCompleted: false
+          });
+        }
+        
         if (onAuth) {
           onAuth(userCredential.user);
         }
@@ -162,21 +176,36 @@ const AuthPage: React.FC<AuthScreenProps> = ({ onAuth }) => {
 
         {/* Form */}
         <form onSubmit={handleAuth} className="space-y-6">
-          {/* Full Name - Only for Sign Up */}
+          {/* First Name and Last Name - Only for Sign Up */}
           {isSignUp && (
-            <div className="animate-in slide-in-from-left duration-300">
-              <label className="block text-sm font-semibold text-slate-700 mb-2">
-                Full Name
-              </label>
-              <input
-                type="text"
-                placeholder="Enter your full name"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 hover:border-slate-300"
-                required={isSignUp}
-              />
-            </div>
+            <>
+              <div className="animate-in slide-in-from-left duration-300">
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter your first name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 hover:border-slate-300"
+                  required={isSignUp}
+                />
+              </div>
+              <div className="animate-in slide-in-from-right duration-300">
+                <label className="block text-sm font-semibold text-slate-700 mb-2">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter your last name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 hover:border-slate-300"
+                  required={isSignUp}
+                />
+              </div>
+            </>
           )}
 
           {/* Email */}

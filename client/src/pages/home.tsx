@@ -1,19 +1,18 @@
-
 import React from 'react';
 import { useLocation } from 'wouter';
 import FeatureCard from '../components/common/FeatureCard';
 
-interface User {
-  email?: string;
-}
-
 interface HomePageProps {
-  user: User;
+  user: any;
+  userProfile: any;
   onLogout: () => void;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ user, onLogout }) => {
+export default function HomePage({ user, userProfile, onLogout }: HomePageProps) {
   const [, setLocation] = useLocation();
+  const displayName = userProfile 
+    ? `${userProfile.firstName} ${userProfile.lastName}`
+    : user?.displayName || user?.email;
 
   const features = [
     {
@@ -46,7 +45,7 @@ const HomePage: React.FC<HomePageProps> = ({ user, onLogout }) => {
     <div className="home-screen">
       {/* Header with logout button */}
       <header className="home-header">
-        <h1>Welcome, {user?.email}</h1>
+        <h1>Welcome, {displayName}!</h1>
         <button onClick={onLogout} className="logout-btn">
           Logout
         </button>

@@ -1,7 +1,7 @@
 
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged } from 'firebase/auth';
 
@@ -118,3 +118,82 @@ export const getDialects = async (languageId: number) => {
 };
 
 export const googleProvider = new GoogleAuthProvider();
+
+// User profile management functions
+export const saveUserProfile = async (userId: string, profileData: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  onboardingCompleted: boolean;
+}) => {
+  if (!db) {
+    throw new Error('Firebase not configured');
+  }
+
+  try {
+    const userRef = doc(db, 'users', userId);
+    await setDoc(userRef, {
+      ...profileData,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+  } catch (error) {
+    console.error('Error saving user profile:', error);
+    throw error;
+  }
+};
+
+export const getUserProfileFromFirebase = async (userId: string) => {
+  if (!db) {
+    throw new Error('Firebase not configured');
+  }
+
+  try {
+    const userRef = doc(db, 'users', userId);
+    const userSnap = await getDoc(userRef);
+    
+    if (userSnap.exists()) {
+      return userSnap.data();
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
+    throw error;
+  }
+};
+
+export const saveOnboardingToFirebase = async (userId: string, onboardingData: any) => {
+  if (!db) {
+    throw new Error('Firebase not configured');
+  }
+
+  try {
+    const userRef = doc(db, 'users', userId);
+    await updateDoc(userRef, {
+      onboardingData: onboardingData,
+      onboardingCompleted: true,
+      updatedAt: new Date()
+    });
+  } catch (error) {
+    console.error('Error saving onboarding data:', error);
+    throw error;
+  }
+};
+
+export const updateUserPreferences = async (userId: string, preferences: any) => {
+  if (!db) {
+    throw new Error('Firebase not configured');
+  }
+
+  try {
+    const userRef = doc(db, 'users', userId);
+    await updateDoc(userRef, {
+      onboardingData: preferences,
+      updatedAt: new Date()
+    });
+  } catch (error) {
+    console.error('Error updating user preferences:', error);
+    throw error;
+  }
+};

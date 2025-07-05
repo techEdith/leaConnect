@@ -4,7 +4,9 @@ import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
 import { Check, ArrowRight, Globe, Users, Target, Clock } from "lucide-react";
 import { useLocation } from "wouter";
-import { saveOnboardingData } from "../../lib/firebase";
+import { saveOnboardingToFirebase } from "../../lib/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../services/firebase";
 import type { Language, Dialect, FamilyMember } from "../../../../shared/schema";
 
 interface CompletionScreenProps {
@@ -26,11 +28,13 @@ export default function CompletionScreen({
   const [, setLocation] = useLocation();
   const [isCompleting, setIsCompleting] = useState(false);
 
+  const [user] = useAuthState(auth);
+
   const completionMutation = useMutation({
     mutationFn: async () => {
-      // For demo purposes, using userId = 1
-      // In a real app, this would come from authentication
-      const userId = 1;
+      if (!user) {
+        throw new Error('User not authenticated');
+      }
 
       const onboardingData = {
         nativeLanguage: selectedLanguage.code,
@@ -39,7 +43,7 @@ export default function CompletionScreen({
         dailyGoal,
       };
 
-      return saveOnboardingData(userId, onboardingData);
+      return saveOnboardingToFirebase(user.uid, onboardingData);
     },
     onSuccess: () => {
       // Call the onComplete callback or fallback to navigation
