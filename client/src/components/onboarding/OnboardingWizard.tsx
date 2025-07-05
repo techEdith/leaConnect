@@ -21,7 +21,11 @@ export interface OnboardingState {
 
 const TOTAL_STEPS = 5;
 
-export default function OnboardingWizard() {
+interface OnboardingWizardProps {
+  onComplete?: () => void;
+}
+
+export default function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
   const [state, setState] = useState<OnboardingState>({
     currentStep: 1,
     selectedLanguage: null,
@@ -114,6 +118,7 @@ export default function OnboardingWizard() {
             selectedDialect={state.selectedDialect}
             familyMembers={state.familyMembers}
             dailyGoal={state.dailyGoal}
+            onComplete={onComplete}
           />
         );
       default:

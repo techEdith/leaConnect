@@ -12,6 +12,7 @@ interface CompletionScreenProps {
   selectedDialect: Dialect | null;
   familyMembers: Omit<FamilyMember, 'id' | 'userId' | 'createdAt'>[];
   dailyGoal: number;
+  onComplete?: () => void;
 }
 
 
@@ -20,6 +21,7 @@ export default function CompletionScreen({
   selectedDialect,
   familyMembers,
   dailyGoal,
+  onComplete,
 }: CompletionScreenProps) {
   const [, setLocation] = useLocation();
   const [isCompleting, setIsCompleting] = useState(false);
@@ -40,9 +42,13 @@ export default function CompletionScreen({
       return saveOnboardingData(userId, onboardingData);
     },
     onSuccess: () => {
-      // Navigate to dashboard after successful completion
+      // Call the onComplete callback or fallback to navigation
       setTimeout(() => {
-        setLocation('/dashboard');
+        if (onComplete) {
+          onComplete();
+        } else {
+          setLocation('/dashboard');
+        }
       }, 1500);
     },
     onError: (error) => {

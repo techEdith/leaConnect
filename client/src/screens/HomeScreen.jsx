@@ -1,34 +1,34 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import FeatureCard from '../components/common/FeatureCard';
 
 const HomeScreen = ({ user, onLogout }) => {
-  const navigate = useNavigate();
+  const [, setLocation] = useLocation();
 
   const features = [
     {
       icon: '🎯',
       title: 'Flashcard Learning',
       description: 'Learn Swahili words with audio pronunciation, translations, and cultural context from your family heritage.',
-      onClick: () => navigate('/flashcards')
+      onClick: () => setLocation('/flashcards')
     },
     {
       icon: '📚',
       title: 'Heritage Dictionary',
       description: 'Explore a rich collection of Swahili words with definitions, family recordings, and cultural stories.',
-      onClick: () => navigate('/dictionary')
+      onClick: () => setLocation('/dictionary')
     },
     {
       icon: '📈',
       title: 'Learning Progress',
       description: 'Track your journey in connecting with your cultural roots through language mastery.',
-      onClick: () => navigate('/progress')
+      onClick: () => setLocation('/progress')
     },
     {
       icon: '👵',
       title: 'Family Contributions',
       description: 'Listen to recordings from grandparents and family members sharing proverbs and cultural wisdom.',
-      onClick: () => {}
+      onClick: () => setLocation('/family')
     }
   ];
 
@@ -66,7 +66,7 @@ const HomeScreen = ({ user, onLogout }) => {
 
         <button 
           className="start-button" 
-          onClick={() => navigate('/flashcards')}
+          onClick={() => setLocation('/flashcards')}
         >
           Start Learning Today
         </button>
