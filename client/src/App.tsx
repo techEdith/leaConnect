@@ -13,6 +13,7 @@ import HomePage from "./pages/home";
 import FlashcardsPage from "./pages/flashcards";
 import DictionaryPage from "./pages/dictionary";
 import ProgressPage from "./pages/progress";
+import BottomNavigation from "./components/BottomNavigation"; // Import BottomNavigation component
 
 function App() {
   const [user, setUser] = useState(null);
@@ -141,7 +142,10 @@ function App() {
               <Route path="/dashboard" component={DashboardPage} />
               <Route component={NotFoundPage} />
             </Switch>
-            <Toaster />
+            </div>
+            {user && hasCompletedOnboarding && (
+              <BottomNavigation />
+            )}
           </div>
         </div>
         <div className="phone-home-indicator"></div>
