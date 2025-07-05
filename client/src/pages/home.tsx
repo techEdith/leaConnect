@@ -81,5 +81,3 @@ export default function HomePage({ user, userProfile, onLogout }: HomePageProps)
     </div>
   );
 };
-
-export default HomePage;
