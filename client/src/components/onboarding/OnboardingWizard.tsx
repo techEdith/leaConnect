@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Card } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Globe, Heart, ArrowLeft, ArrowRight } from "lucide-react";
+import { Globe, Heart, ArrowLeft, ArrowRight, BookOpen, Users, Trophy } from "lucide-react";
 import LanguageSelection from "./LanguageSelection";
 import DialectSelection from "./DialectSelection";
 import FamilyMembers from "./FamilyMembers";
@@ -186,21 +186,21 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
       <div className="grid md:grid-cols-3 gap-6 mb-8">
         <div className="text-center p-4">
           <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-            <i className="fas fa-book-open text-blue-600"></i>
+            <BookOpen className="text-blue-600" size={20} />
           </div>
           <h3 className="font-semibold text-neutral mb-2">Learn</h3>
           <p className="text-sm text-gray-600">Master your heritage language with interactive flashcards</p>
         </div>
         <div className="text-center p-4">
           <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-            <i className="fas fa-users text-green-600"></i>
+            <Users className="text-green-600" size={20} />
           </div>
           <h3 className="font-semibold text-neutral mb-2">Connect</h3>
           <p className="text-sm text-gray-600">Bridge generations and strengthen family communication</p>
         </div>
         <div className="text-center p-4">
           <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-            <i className="fas fa-trophy text-purple-600"></i>
+            <Trophy className="text-purple-600" size={20} />
           </div>
           <h3 className="font-semibold text-neutral mb-2">Grow</h3>
           <p className="text-sm text-gray-600">Track progress and celebrate cultural milestones</p>
