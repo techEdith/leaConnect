@@ -181,7 +181,12 @@ export class MemStorage implements IStorage {
 
   async createDialect(dialect: InsertDialect): Promise<Dialect> {
     const id = this.currentId++;
-    const newDialect: Dialect = { ...dialect, id };
+    const newDialect: Dialect = {
+      ...dialect,
+      id,
+      description: dialect.description ?? null,
+      region: dialect.region ?? null,
+    };
 
     const existing = this.dialects.get(dialect.languageId) || [];
     existing.push(newDialect);
