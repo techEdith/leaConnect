@@ -17,10 +17,10 @@ const DictionaryScreen: React.FC = () => {
   // Convert flashcard data to dictionary entries
   const dictionaryEntries: DictionaryEntry[] = flashcards.map((card, index) => ({
     id: index + 1,
-    swahili: card.swahili,
-    english: card.english,
+    swahili: card.word,
+    english: card.translation,
     pronunciation: card.pronunciation || '',
-    culturalContext: card.culturalContext
+    culturalContext: card.culturalNote
   }));
 
   const filteredEntries = dictionaryEntries.filter(entry =>
