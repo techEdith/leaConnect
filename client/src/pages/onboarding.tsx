@@ -8,7 +8,7 @@ interface OnboardingPageProps {
 
 export default function OnboardingPage({ onComplete }: OnboardingPageProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-amber-50">
       <OnboardingWizard onComplete={onComplete} />
     </div>
   );
