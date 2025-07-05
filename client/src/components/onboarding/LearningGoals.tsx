@@ -153,7 +153,7 @@ export default function LearningGoals({
         <Button
           onClick={onComplete}
           disabled={!canProceed}
-          className="flex-1 bg-gradient-to-r from-primary to-accent text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300 disabled:opacity-50"
+          className="flex-1 bg-gradient-to-r from-purple-600 to-amber-500 text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300 disabled:opacity-50"
         >
           Complete Setup
           <Check className="ml-2" size={16} />

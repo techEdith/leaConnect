@@ -116,7 +116,7 @@ export default function DialectSelection({
         </Button>
         <Button
           onClick={onNext}
-          className="flex-1 bg-gradient-to-r from-primary to-accent text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300"
+          className="flex-1 bg-gradient-to-r from-purple-600 to-amber-500 text-white py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300"
         >
           Continue
           <ArrowRight className="ml-2" size={16} />

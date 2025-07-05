@@ -137,7 +137,7 @@ export default function OnboardingWizard({ onComplete }: OnboardingWizardProps) 
           {/* Progress Bar */}
           <div className="bg-gray-100 h-2">
             <div 
-              className="bg-gradient-to-r from-primary to-accent h-full transition-all duration-500 ease-out"
+              className="bg-gradient-to-r from-purple-600 to-amber-500 h-full transition-all duration-500 ease-out"
               style={{ width: `${progressPercentage}%` }}
             />
           </div>
@@ -146,7 +146,7 @@ export default function OnboardingWizard({ onComplete }: OnboardingWizardProps) 
           <div className="p-6 border-b border-gray-100">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-amber-500 rounded-full flex items-center justify-center">
                   <Globe className="text-white text-lg" />
                 </div>
                 <div>
@@ -174,7 +174,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
   return (
     <div>
       <div className="text-center mb-8">
-        <div className="w-20 h-20 bg-gradient-to-r from-secondary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+        <div className="w-20 h-20 bg-gradient-to-r from-purple-600 to-amber-500 rounded-full flex items-center justify-center mx-auto mb-6">
           <Heart className="text-white text-2xl" />
         </div>
         <h2 className="text-3xl font-bold text-neutral mb-4">Welcome to Your Language Journey</h2>
@@ -209,7 +209,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
 
       <Button 
         onClick={onNext}
-        className="w-full bg-gradient-to-r from-primary to-accent text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+        className="w-full bg-gradient-to-r from-purple-600 to-amber-500 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
       >
         Let's Get Started
         <ArrowRight className="ml-2" />
