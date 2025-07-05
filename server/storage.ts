@@ -53,8 +53,6 @@ export class MemStorage implements IStorage {
     const sampleLanguages: Language[] = [
       { id: 1, name: "English", nativeName: "English", flag: "🇺🇸", code: "en" },
       { id: 2, name: "French", nativeName: "Français", flag: "🇫🇷", code: "fr" },
-      { id: 3, name: "Arabic", nativeName: "العربية", flag: "🇸🇦", code: "ar" },
-      { id: 4, name: "Mandarin", nativeName: "普通话", flag: "🇨🇳", code: "zh" },
       { id: 5, name: "Spanish", nativeName: "Español", flag: "🇪🇸", code: "es" },
     ];
 
@@ -71,9 +69,9 @@ export class MemStorage implements IStorage {
     ]);
 
     this.dialects.set(2, [
-      { id: 4, languageId: 2, name: "Baoule", description: "West African dialect", region: "Cote d'Ivoire" },
-      { id: 5, languageId: 2, name: "Bete", description: "West African dialect", region: "Cote d'Ivoire" },
-      { id: 6, languageId: 2, name: "Gouro", description: "West African dialect", region: "Cote d'Ivoire" },
+      { id: 4, languageId: 2, name: "Baoule", description: "African dialect", region: "Cote d'Ivoire" },
+      { id: 5, languageId: 2, name: "Bete", description: " African dialect", region: "Cote d'Ivoire" },
+      { id: 6, languageId: 2, name: "Gouro", description: " African dialect", region: "Cote d'Ivoire" },
     ]);
   }
 
