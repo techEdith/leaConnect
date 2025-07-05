@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Route, Switch } from "wouter";
@@ -20,7 +19,7 @@ function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      
+
       if (currentUser) {
         // Check if user has completed onboarding
         try {
@@ -36,7 +35,7 @@ function App() {
       } else {
         setHasCompletedOnboarding(false);
       }
-      
+
       setLoading(false);
     });
 
