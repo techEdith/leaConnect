@@ -378,11 +378,25 @@ body {
 .search-bar input {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 12px;
   font-size: 0.9rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
+  color: #374151;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.search-bar input::placeholder {
+  color: #6b7280;
+  opacity: 0.8;
+}
+
+.search-bar input:focus {
+  border-color: #9333ea;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
 }
 
 .dictionary-content {
@@ -396,60 +410,69 @@ body {
 .entries-list {
   max-height: 40vh;
   overflow-y: auto;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(15px);
   border-radius: 12px;
   padding: 0.75rem;
   order: 1;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .entry-item {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   padding: 0.75rem;
   border-radius: 8px;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  border: 1px solid rgba(147, 51, 234, 0.1);
 }
 
 .entry-item:hover {
   background: rgba(255, 255, 255, 1);
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.2);
+  border-color: rgba(147, 51, 234, 0.3);
 }
 
 .entry-item.selected {
-  background: rgba(147, 51, 234, 0.1);
-  border: 2px solid #d5b3f5;
+  background: rgba(147, 51, 234, 0.15);
+  border: 2px solid #9333ea;
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
 }
 
 .entry-swahili {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #9333ea;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.3;
 }
 
 .entry-english {
   color: #6b7280;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
 }
 
 .entry-details {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(15px);
   border-radius: 12px;
-  padding: 1rem;
+  padding: 1.25rem;
   height: fit-content;
   order: 2;
   max-height: 50vh;
   overflow-y: auto;
+  border: 1px solid rgba(147, 51, 234, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .entry-details h2 {
-  color: #d5b3f5;
+  color: #9333ea;
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .pronunciation {
@@ -457,24 +480,38 @@ body {
   font-style: italic;
   font-size: 0.95rem;
   margin-bottom: 1rem;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.5rem;
+  border-radius: 6px;
+  border-left: 3px solid #3b82f6;
 }
 
 .translation {
   font-size: 1rem;
   margin-bottom: 1.5rem;
   color: #374151;
+  font-weight: 500;
+  background: rgba(16, 185, 129, 0.05);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border-left: 3px solid #10b981;
 }
 
 .cultural-context h3 {
   color: #9333ea;
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .cultural-context p {
   color: #6b7280;
   line-height: 1.6;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  background: rgba(147, 51, 234, 0.05);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border-left: 3px solid #9333ea;
 }
 
 /* Progress Styles */
