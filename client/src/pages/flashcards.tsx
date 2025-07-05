@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { flashcards } from '../data/flashcards';
 
@@ -17,7 +16,7 @@ const FlashcardComponent: React.FC<{
           <p>Definition: {card.definition}</p>
           {card.pronunciation && <p>Pronunciation: {card.pronunciation}</p>}
         </div>
-        
+
         {!showAnswer ? (
           <button onClick={onShowAnswer} className="show-answer-btn">
             Show Answer
@@ -93,6 +92,7 @@ const FlashcardsPage: React.FC = () => {
           Next →
         </button>
       </div>
+    </div>
     </div>
   );
 };
