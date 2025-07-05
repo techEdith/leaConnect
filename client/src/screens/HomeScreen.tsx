@@ -20,13 +20,13 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ user, onLogout }) => {
       icon: '🎯',
       title: 'Flashcard Learning',
       description: 'Learn Swahili words with audio pronunciation, translations, and cultural context from your family heritage.',
-      onClick: () => setLocation('/flashcards')
+      onClick: () => setLocation('../components/flashcards')
     },
     {
       icon: '📚',
       title: 'Heritage Dictionary',
       description: 'Explore a rich collection of Swahili words with definitions, family recordings, and cultural stories.',
-      onClick: () => setLocation('/dictionary')
+      onClick: () => setLocation('../components/dictionary')
     },
     {
       icon: '📈',

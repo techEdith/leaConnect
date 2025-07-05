@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { flashcardsData } from '../data/flashcards';
+import { flashcards } from '../data/flashcards';
 import FlashcardComponent from '../components/flashcards/FlashcardComponent';
 
 const FlashcardScreen: React.FC = () => {
@@ -8,16 +8,16 @@ const FlashcardScreen: React.FC = () => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [score, setScore] = useState({ correct: 0, total: 0 });
 
-  const currentCard = flashcardsData[currentCardIndex];
+  const currentCard = flashcards[currentCardIndex];
 
   const handleNext = () => {
     setShowAnswer(false);
-    setCurrentCardIndex((prev) => (prev + 1) % flashcardsData.length);
+    setCurrentCardIndex((prev) => (prev + 1) % flashcards.length);
   };
 
   const handlePrevious = () => {
     setShowAnswer(false);
-    setCurrentCardIndex((prev) => (prev - 1 + flashcardsData.length) % flashcardsData.length);
+    setCurrentCardIndex((prev) => (prev - 1 + flashcards.length) % flashcards.length);
   };
 
   const handleAnswer = (isCorrect: boolean) => {
@@ -33,7 +33,7 @@ const FlashcardScreen: React.FC = () => {
       <div className="flashcard-header">
         <h1>Swahili Flashcards</h1>
         <div className="progress">
-          <span>{currentCardIndex + 1} of {flashcardsData.length}</span>
+          <span>{currentCardIndex + 1} of {flashcards.length}</span>
           <div className="score">
             Score: {score.correct}/{score.total}
           </div>

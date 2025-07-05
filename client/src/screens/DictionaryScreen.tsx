@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { flashcardsData } from '../data/flashcards';
+import { flashcards } from '../data/flashcards';
 
 interface DictionaryEntry {
   id: number;
@@ -15,7 +15,7 @@ const DictionaryScreen: React.FC = () => {
   const [selectedEntry, setSelectedEntry] = useState<DictionaryEntry | null>(null);
 
   // Convert flashcard data to dictionary entries
-  const dictionaryEntries: DictionaryEntry[] = flashcardsData.map((card, index) => ({
+  const dictionaryEntries: DictionaryEntry[] = flashcards.map((card, index) => ({
     id: index + 1,
     swahili: card.swahili,
     english: card.english,
