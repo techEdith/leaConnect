@@ -919,21 +919,40 @@ body {
 
 /* Responsive Design - Tablet and Desktop */
 @media (min-width: 768px) {
-  .home-header {
+  /* Keep mobile styles within phone container */
+  .phone-container .home-header {
+    padding: 1rem;
+  }
+
+  .phone-container .home-header h1 {
+    font-size: 1.125rem;
+  }
+
+  .phone-container .logout-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .phone-container .screen-content {
+    padding: 1rem;
+  }
+
+  /* Only apply larger styles outside phone container */
+  body:not(.phone-container) .home-header {
     padding: 1rem 2rem;
   }
 
-  .home-header h1 {
+  body:not(.phone-container) .home-header h1 {
     font-size: 1.5rem;
     max-width: none;
   }
 
-  .logout-btn {
+  body:not(.phone-container) .logout-btn {
     padding: 0.5rem 1rem;
     font-size: 1rem;
   }
 
-  .screen-content {
+  body:not(.phone-container) .screen-content {
     padding: 2rem;
     max-width: 800px;
     margin: 0 auto;
@@ -1010,19 +1029,64 @@ body {
   }
 }
 
-/* Phone container */
+/* Phone container styles */
 .phone-container {
   width: 375px;
   height: 812px;
   margin: 20px auto;
-  border: 3px solid black;
-  border-radius: 30px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background: #000;
+  border-radius: 40px;
+  padding: 6px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  position: relative;
 }
 
-/* Adjust app to fit inside the phone container */
-#root {
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 30px;
+  background: #000;
+  border-radius: 0 0 20px 20px;
+  z-index: 10;
+}
+
+.phone-screen {
   width: 100%;
   height: 100%;
+  background: #fff;
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+}
+
+.app-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.phone-home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 5px;
+  background: #000;
+  border-radius: 3px;
+}
+
+/* Ensure root container fills the space */
+#root {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  box-sizing: border-box;
 }
