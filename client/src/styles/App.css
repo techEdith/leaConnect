@@ -527,6 +527,98 @@ body {
   color: #9333ea;
 }
 
+/* Onboarding Completion Screen Styles */
+.completion-screen {
+  background: linear-gradient(135deg, #f3e8ff 0%, #fef3c7 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.completion-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(147, 51, 234, 0.2);
+  border: 1px solid rgba(147, 51, 234, 0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.completion-icon {
+  background: linear-gradient(135deg, #9333ea 0%, #f59e0b 100%);
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 4px 20px rgba(147, 51, 234, 0.3);
+}
+
+.completion-title {
+  color: #1f2937;
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.completion-subtitle {
+  color: #6b7280;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.setup-summary {
+  background: rgba(147, 51, 234, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(147, 51, 234, 0.1);
+}
+
+.setup-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.setup-item:last-child {
+  margin-bottom: 0;
+}
+
+.setup-icon {
+  color: #f59e0b;
+  margin-right: 0.75rem;
+  font-size: 1.125rem;
+}
+
+.completion-button {
+  background: linear-gradient(135deg, #9333ea 0%, #f59e0b 100%);
+  color: white;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+}
+
+.completion-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
+}
+
 /* HomeScreen Styles - Mobile First */
 .home-screen {
   min-height: 100vh;

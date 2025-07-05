@@ -31,7 +31,7 @@ export default function CompletionScreen({
       // For demo purposes, using userId = 1
       // In a real app, this would come from authentication
       const userId = 1;
-      
+
       const onboardingData = {
         nativeLanguage: selectedLanguage.code,
         dialect: selectedDialect?.name,
@@ -94,12 +94,12 @@ export default function CompletionScreen({
               <div className="w-24 h-24 bg-gradient-to-r from-accent to-secondary rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="text-white text-3xl" size={32} />
               </div>
-              
+
               <h2 className="text-3xl font-bold text-neutral mb-4">Welcome to Lea Connect!</h2>
               <p className="text-gray-600 text-lg mb-8 max-w-md mx-auto">
                 Your language learning journey is ready to begin. Let's start building those cultural connections!
               </p>
-              
+
               <Card className="bg-gradient-to-r from-blue-50 to-purple-50 border-0 mb-8">
                 <CardContent className="p-6">
                   <h3 className="font-semibold text-neutral mb-4">Your Learning Setup</h3>
@@ -131,7 +131,7 @@ export default function CompletionScreen({
                   </div>
                 </CardContent>
               </Card>
-              
+
               <Button
                 onClick={handleComplete}
                 disabled={completionMutation.isPending}
