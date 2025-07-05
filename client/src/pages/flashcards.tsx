@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { flashcards } from '../data/flashcards';
 
@@ -66,33 +67,34 @@ const FlashcardsPage: React.FC = () => {
   };
 
   return (
-    <div className="flashcard-screen">
-      <div className="flashcard-header">
-        <h1>Swahili Flashcards</h1>
-        <div className="progress">
-          <span>{currentCardIndex + 1} of {flashcards.length}</span>
-          <div className="score">
-            Score: {score.correct}/{score.total}
+    <div className="flashcard-screen-wrapper">
+      <div className="flashcard-screen">
+        <div className="flashcard-header">
+          <h1>Swahili Flashcards</h1>
+          <div className="progress">
+            <span>{currentCardIndex + 1} of {flashcards.length}</span>
+            <div className="score">
+              Score: {score.correct}/{score.total}
+            </div>
           </div>
         </div>
-      </div>
 
-      <FlashcardComponent
-        card={currentCard}
-        showAnswer={showAnswer}
-        onShowAnswer={() => setShowAnswer(true)}
-        onAnswer={handleAnswer}
-      />
+        <FlashcardComponent
+          card={currentCard}
+          showAnswer={showAnswer}
+          onShowAnswer={() => setShowAnswer(true)}
+          onAnswer={handleAnswer}
+        />
 
-      <div className="navigation-buttons">
-        <button onClick={handlePrevious} className="nav-btn">
-          ← Previous
-        </button>
-        <button onClick={handleNext} className="nav-btn">
-          Next →
-        </button>
+        <div className="navigation-buttons">
+          <button onClick={handlePrevious} className="nav-btn">
+            ← Previous
+          </button>
+          <button onClick={handleNext} className="nav-btn">
+            Next →
+          </button>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
