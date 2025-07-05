@@ -4,12 +4,12 @@ import { Route, Switch } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { auth } from "./services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import AuthScreen from "./screens/AuthScreen.tsx";
-import HomeScreen from "./screens/HomeScreen.tsx";
 import OnboardingPage from "./pages/onboarding";
 import DashboardPage from "./pages/dashboard";
 import NotFoundPage from "./pages/not-found";
 import { Toaster } from "./components/ui/toaster";
+import AuthPage from "./pages/AuthScreen.tsx";
+import HomePage from "./pages/HomeScreen.tsx";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -79,28 +79,28 @@ function App() {
         <Switch>
           <Route path="/">
             {!user ? (
-              <AuthScreen onAuth={handleAuth} />
+              <AuthPage onAuth={handleAuth} />
             ) : !hasCompletedOnboarding ? (
               <OnboardingPage onComplete={handleOnboardingComplete} />
             ) : (
-              <HomeScreen user={user} onLogout={handleLogout} />
+              <HomePage user={user} onLogout={handleLogout} />
             )}
           </Route>
           <Route path="/auth">
-            <AuthScreen onAuth={handleAuth} />
+            <AuthPage onAuth={handleAuth} />
           </Route>
           <Route path="/onboarding">
             {user ? (
               <OnboardingPage onComplete={handleOnboardingComplete} />
             ) : (
-              <AuthScreen onAuth={handleAuth} />
+              <AuthPage onAuth={handleAuth} />
             )}
           </Route>
           <Route path="/home">
             {user && hasCompletedOnboarding ? (
-              <HomeScreen user={user} onLogout={handleLogout} />
+              <HomePage user={user} onLogout={handleLogout} />
             ) : !user ? (
-              <AuthScreen onAuth={handleAuth} />
+              <AuthPage onAuth={handleAuth} />
             ) : (
               <OnboardingPage onComplete={handleOnboardingComplete} />
             )}
