@@ -1,7 +1,45 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { flashcards } from '../data/flashcards';
-import FlashcardComponent from '../components/flashcards/FlashcardComponent';
+
+// Simple FlashcardComponent for this page
+const FlashcardComponent: React.FC<{
+  card: any;
+  showAnswer: boolean;
+  onShowAnswer: () => void;
+  onAnswer: (isCorrect: boolean) => void;
+}> = ({ card, showAnswer, onShowAnswer, onAnswer }) => {
+  return (
+    <div className="flashcard-container">
+      <div className="flashcard">
+        <div className="flashcard-front">
+          <h2>{card.word}</h2>
+          <p>Definition: {card.definition}</p>
+          {card.pronunciation && <p>Pronunciation: {card.pronunciation}</p>}
+        </div>
+        
+        {!showAnswer ? (
+          <button onClick={onShowAnswer} className="show-answer-btn">
+            Show Answer
+          </button>
+        ) : (
+          <div className="flashcard-back">
+            <p><strong>Translation:</strong> {card.translation}</p>
+            {card.culturalNote && <p><strong>Cultural Note:</strong> {card.culturalNote}</p>}
+            <div className="answer-buttons">
+              <button onClick={() => onAnswer(false)} className="incorrect-btn">
+                ❌ Incorrect
+              </button>
+              <button onClick={() => onAnswer(true)} className="correct-btn">
+                ✅ Correct
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const FlashcardsPage: React.FC = () => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -46,6 +84,17 @@ const FlashcardsPage: React.FC = () => {
         onShowAnswer={() => setShowAnswer(true)}
         onAnswer={handleAnswer}
       />
+
+      <div className="navigation-buttons">
+        <button onClick={handlePrevious} className="nav-btn">
+          ← Previous
+        </button>
+        <button onClick={handleNext} className="nav-btn">
+          Next →
+        </button>
+      </div>
+    </div>
+  );
 
       <div className="navigation-buttons">
         <button onClick={handlePrevious} disabled={currentCardIndex === 0}>

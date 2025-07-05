@@ -1,6 +1,9 @@
-
 import React from 'react';
-import { Trophy, Target, Calendar, BookOpen } from 'lucide-react';
+
+// Simple icon components since lucide-react might not be installed
+const Trophy = () => <span>🏆</span>;
+const BookOpen = () => <span>📚</span>;
+const Target = () => <span>🎯</span>;
 
 const ProgressPage: React.FC = () => {
   // Mock progress data
