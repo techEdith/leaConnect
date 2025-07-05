@@ -93,7 +93,7 @@ body {
 
 /* Onboarding specific styles */
 .onboarding-container {
-  background: linear-gradient(135deg, #f3e8ff 0%, #fef3c7 100%);
+  background: linear-gradient(135deg, #f3e8ff 0%, #dbeafe 100%);
   min-height: 100vh;
 }
 
@@ -112,7 +112,7 @@ body {
 
 .language-card.selected {
   border-color: rgb(147 51 234);
-  background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(245, 158, 11, 0.15) 100%);
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
   box-shadow: 0 8px 25px rgba(147, 51, 234, 0.2);
 }
 
@@ -156,7 +156,7 @@ body {
   }
 
   .onboarding-progress {
-    @apply bg-gradient-to-r from-purple-500 to-amber-500;
+    @apply bg-gradient-to-r from-purple-500 to-blue-500;
   }
 
   .onboarding-button-primary {
@@ -164,15 +164,15 @@ body {
   }
 
   .onboarding-button-secondary {
-    @apply bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white;
+    @apply bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white;
   }
 
   .step-indicator {
-    @apply bg-gradient-to-r from-purple-100 to-amber-100 border border-purple-200;
+    @apply bg-gradient-to-r from-purple-100 to-blue-100 border border-purple-200;
   }
 
   .step-indicator.active {
-    @apply bg-gradient-to-r from-purple-600 to-amber-600 text-white border-purple-600;
+    @apply bg-gradient-to-r from-purple-600 to-blue-600 text-white border-purple-600;
   }
 
   .step-indicator.completed {
