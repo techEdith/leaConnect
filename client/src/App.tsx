@@ -78,67 +78,73 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen" style={{ backgroundColor: 'hsl(var(--background))' }}>
-        <Switch>
-          <Route path="/">
-            {!user ? (
-              <AuthPage onAuth={handleAuth} />
-            ) : !hasCompletedOnboarding ? (
-              <OnboardingPage onComplete={handleOnboardingComplete} />
-            ) : (
-              <HomePage user={user} onLogout={handleLogout} />
-            )}
-          </Route>
-          <Route path="/auth">
-            <AuthPage onAuth={handleAuth} />
-          </Route>
-          <Route path="/onboarding">
-            {user ? (
-              <OnboardingPage onComplete={handleOnboardingComplete} />
-            ) : (
-              <AuthPage onAuth={handleAuth} />
-            )}
-          </Route>
-          <Route path="/home">
-            {user && hasCompletedOnboarding ? (
-              <HomePage user={user} onLogout={handleLogout} />
-            ) : !user ? (
-              <AuthPage onAuth={handleAuth} />
-            ) : (
-              <OnboardingPage onComplete={handleOnboardingComplete} />
-            )}
-          </Route>
-          <Route path="/flashcards">
-            {user && hasCompletedOnboarding ? (
-              <FlashcardsPage />
-            ) : !user ? (
-              <AuthPage onAuth={handleAuth} />
-            ) : (
-              <OnboardingPage onComplete={handleOnboardingComplete} />
-            )}
-          </Route>
-          <Route path="/dictionary">
-            {user && hasCompletedOnboarding ? (
-              <DictionaryPage />
-            ) : !user ? (
-              <AuthPage onAuth={handleAuth} />
-            ) : (
-              <OnboardingPage onComplete={handleOnboardingComplete} />
-            )}
-          </Route>
-          <Route path="/progress">
-            {user && hasCompletedOnboarding ? (
-              <ProgressPage />
-            ) : !user ? (
-              <AuthPage onAuth={handleAuth} />
-            ) : (
-              <OnboardingPage onComplete={handleOnboardingComplete} />
-            )}
-          </Route>
-          <Route path="/dashboard" component={DashboardPage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-        <Toaster />
+      <div className="phone-container">
+        <div className="phone-notch"></div>
+        <div className="phone-screen">
+          <div className="app-content">
+            <Switch>
+              <Route path="/">
+                {!user ? (
+                  <AuthPage onAuth={handleAuth} />
+                ) : !hasCompletedOnboarding ? (
+                  <OnboardingPage onComplete={handleOnboardingComplete} />
+                ) : (
+                  <HomePage user={user} onLogout={handleLogout} />
+                )}
+              </Route>
+              <Route path="/auth">
+                <AuthPage onAuth={handleAuth} />
+              </Route>
+              <Route path="/onboarding">
+                {user ? (
+                  <OnboardingPage onComplete={handleOnboardingComplete} />
+                ) : (
+                  <AuthPage onAuth={handleAuth} />
+                )}
+              </Route>
+              <Route path="/home">
+                {user && hasCompletedOnboarding ? (
+                  <HomePage user={user} onLogout={handleLogout} />
+                ) : !user ? (
+                  <AuthPage onAuth={handleAuth} />
+                ) : (
+                  <OnboardingPage onComplete={handleOnboardingComplete} />
+                )}
+              </Route>
+              <Route path="/flashcards">
+                {user && hasCompletedOnboarding ? (
+                  <FlashcardsPage />
+                ) : !user ? (
+                  <AuthPage onAuth={handleAuth} />
+                ) : (
+                  <OnboardingPage onComplete={handleOnboardingComplete} />
+                )}
+              </Route>
+              <Route path="/dictionary">
+                {user && hasCompletedOnboarding ? (
+                  <DictionaryPage />
+                ) : !user ? (
+                  <AuthPage onAuth={handleAuth} />
+                ) : (
+                  <OnboardingPage onComplete={handleOnboardingComplete} />
+                )}
+              </Route>
+              <Route path="/progress">
+                {user && hasCompletedOnboarding ? (
+                  <ProgressPage />
+                ) : !user ? (
+                  <AuthPage onAuth={handleAuth} />
+                ) : (
+                  <OnboardingPage onComplete={handleOnboardingComplete} />
+                )}
+              </Route>
+              <Route path="/dashboard" component={DashboardPage} />
+              <Route component={NotFoundPage} />
+            </Switch>
+            <Toaster />
+          </div>
+        </div>
+        <div className="phone-home-indicator"></div>
       </div>
     </QueryClientProvider>
   );

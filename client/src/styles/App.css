@@ -165,7 +165,7 @@ body {
 
 .pronunciation-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 4px 12px rgba(213, 179, 245, 0.4);
 }
 
 .pronunciation-guide {
@@ -340,7 +340,7 @@ body {
 
 .pronunciation-btn:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(213, 179, 245, 0.4); 
+  box-shadow: 0 4px 12px rgba(213, 179, 245, 0.4);
 }
 
 .card-header {
@@ -1008,4 +1008,21 @@ body {
   .app-title {
     font-size: 2.5rem;
   }
+}
+
+/* Phone container */
+.phone-container {
+  width: 375px;
+  height: 812px;
+  margin: 20px auto;
+  border: 3px solid black;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Adjust app to fit inside the phone container */
+#root {
+  width: 100%;
+  height: 100%;
 }
