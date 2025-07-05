@@ -5,7 +5,7 @@ import { Route, Switch } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { auth } from "./services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import AuthScreen from "./screens/AuthScreen.jsx";
+import AuthScreen from "./screens/AuthScreen.tsx";
 import HomeScreen from "./screens/HomeScreen.tsx";
 import OnboardingPage from "./pages/onboarding";
 import DashboardPage from "./pages/dashboard";
