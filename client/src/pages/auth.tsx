@@ -118,7 +118,8 @@ const AuthPage: React.FC<AuthScreenProps> = ({ onAuth }) => {
     setEmail('');
     setPassword('');
     setConfirmPassword('');
-    setFullName('');
+    setFirstName('');
+    setLastName('');
   };
 
   return (
@@ -201,7 +202,7 @@ const AuthPage: React.FC<AuthScreenProps> = ({ onAuth }) => {
                   placeholder="Enter your last name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 hover:border-slate-300"00"
+                  className="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10 transition-all duration-300 hover:border-slate-300"
                   required={isSignUp}
                 />
               </div>
